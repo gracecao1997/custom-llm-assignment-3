@@ -1,0 +1,33 @@
+{
+  "runs": [
+    {
+      "run": "starter",
+      "executed_code_cells": 12,
+      "no_error_outputs": true,
+      "plot_embedded": true,
+      "no_exact_eval_prefix_in_corpus": true,
+      "train_validation_disjoint": true
+    },
+    {
+      "run": "expanded",
+      "executed_code_cells": 12,
+      "no_error_outputs": true,
+      "plot_embedded": true,
+      "no_exact_eval_prefix_in_corpus": true,
+      "train_validation_disjoint": true
+    },
+    {
+      "run": "expanded_6000",
+      "executed_code_cells": 12,
+      "no_error_outputs": true,
+      "plot_embedded": true,
+      "no_exact_eval_prefix_in_corpus": true,
+      "train_validation_disjoint": true
+    }
+  ],
+  "source_files_unchanged": true,
+  "followup_corpus_split_vocabulary_identical": true,
+  "chat_model_matches_expanded": true,
+  "three_actual_chat_turns": true,
+  "readme_local_links_exist": true
+}

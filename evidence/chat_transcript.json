@@ -1,0 +1,35 @@
+{
+  "model": "llm_runs/expanded/model.pt",
+  "model_sha256": "750df05bb8574ebd5476a6aadcba0ac5016eb15d8e5bb7bef955d35895cb8218",
+  "completed_steps": 3000,
+  "fresh_context_per_prompt": true,
+  "temperature": 0.8,
+  "max_tokens": 24,
+  "turns": [
+    {
+      "prompt": "the customer",
+      "seed": 2026,
+      "response": "returned the package after checking the price .",
+      "unknown_prompt_words": [],
+      "prompt_truncated": false
+    },
+    {
+      "prompt": "a cat",
+      "seed": 2027,
+      "response": "is cold at the station .",
+      "unknown_prompt_words": [],
+      "prompt_truncated": false
+    },
+    {
+      "prompt": "explain quantum teleportation",
+      "seed": 2028,
+      "response": "quiet in patient .",
+      "unknown_prompt_words": [
+        "explain",
+        "quantum",
+        "teleportation"
+      ],
+      "prompt_truncated": false
+    }
+  ]
+}

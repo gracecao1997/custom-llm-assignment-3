@@ -1,0 +1,882 @@
+today the first soup was hot but the other soup was cold .
+today the first soup was cold but the other soup was hot .
+this morning the first soup was hot but the other soup was cold .
+this morning the first soup was cold but the other soup was hot .
+at noon the first soup was hot but the other soup was cold .
+at noon the first soup was cold but the other soup was hot .
+this evening the first soup was hot but the other soup was cold .
+this evening the first soup was cold but the other soup was hot .
+on monday the first soup was hot but the other soup was cold .
+on monday the first soup was cold but the other soup was hot .
+on friday the first soup was hot but the other soup was cold .
+on friday the first soup was cold but the other soup was hot .
+today the first drink was hot but the other drink was cold .
+today the first drink was cold but the other drink was hot .
+this morning the first drink was hot but the other drink was cold .
+this morning the first drink was cold but the other drink was hot .
+at noon the first drink was hot but the other drink was cold .
+at noon the first drink was cold but the other drink was hot .
+this evening the first drink was hot but the other drink was cold .
+this evening the first drink was cold but the other drink was hot .
+on monday the first drink was hot but the other drink was cold .
+on monday the first drink was cold but the other drink was hot .
+on friday the first drink was hot but the other drink was cold .
+on friday the first drink was cold but the other drink was hot .
+today the first water was hot but the other water was cold .
+today the first water was cold but the other water was hot .
+this morning the first water was hot but the other water was cold .
+this morning the first water was cold but the other water was hot .
+at noon the first water was hot but the other water was cold .
+at noon the first water was cold but the other water was hot .
+this evening the first water was hot but the other water was cold .
+this evening the first water was cold but the other water was hot .
+on monday the first water was hot but the other water was cold .
+on monday the first water was cold but the other water was hot .
+on friday the first water was hot but the other water was cold .
+on friday the first water was cold but the other water was hot .
+today the first tea was hot but the other tea was cold .
+today the first tea was cold but the other tea was hot .
+this morning the first tea was hot but the other tea was cold .
+this morning the first tea was cold but the other tea was hot .
+at noon the first tea was hot but the other tea was cold .
+at noon the first tea was cold but the other tea was hot .
+this evening the first tea was hot but the other tea was cold .
+this evening the first tea was cold but the other tea was hot .
+on monday the first tea was hot but the other tea was cold .
+on monday the first tea was cold but the other tea was hot .
+on friday the first tea was hot but the other tea was cold .
+on friday the first tea was cold but the other tea was hot .
+today the first milk was hot but the other milk was cold .
+today the first milk was cold but the other milk was hot .
+this morning the first milk was hot but the other milk was cold .
+this morning the first milk was cold but the other milk was hot .
+at noon the first milk was hot but the other milk was cold .
+at noon the first milk was cold but the other milk was hot .
+this evening the first milk was hot but the other milk was cold .
+this evening the first milk was cold but the other milk was hot .
+on monday the first milk was hot but the other milk was cold .
+on monday the first milk was cold but the other milk was hot .
+on friday the first milk was hot but the other milk was cold .
+on friday the first milk was cold but the other milk was hot .
+today the first meal was hot but the other meal was cold .
+today the first meal was cold but the other meal was hot .
+this morning the first meal was hot but the other meal was cold .
+this morning the first meal was cold but the other meal was hot .
+at noon the first meal was hot but the other meal was cold .
+at noon the first meal was cold but the other meal was hot .
+this evening the first meal was hot but the other meal was cold .
+this evening the first meal was cold but the other meal was hot .
+on monday the first meal was hot but the other meal was cold .
+on monday the first meal was cold but the other meal was hot .
+on friday the first meal was hot but the other meal was cold .
+on friday the first meal was cold but the other meal was hot .
+the words hot and cold describe contrasting conditions .
+the words cold and hot describe contrasting conditions .
+hot contrasts with cold in this lesson .
+cold contrasts with hot in this lesson .
+we learned that hot and cold have opposite meanings .
+we learned that cold and hot have opposite meanings .
+today the first cup was empty but the other cup was full .
+today the first cup was full but the other cup was empty .
+this morning the first cup was empty but the other cup was full .
+this morning the first cup was full but the other cup was empty .
+at noon the first cup was empty but the other cup was full .
+at noon the first cup was full but the other cup was empty .
+this evening the first cup was empty but the other cup was full .
+this evening the first cup was full but the other cup was empty .
+on monday the first cup was empty but the other cup was full .
+on monday the first cup was full but the other cup was empty .
+on friday the first cup was empty but the other cup was full .
+on friday the first cup was full but the other cup was empty .
+today the first box was empty but the other box was full .
+today the first box was full but the other box was empty .
+this morning the first box was empty but the other box was full .
+this morning the first box was full but the other box was empty .
+at noon the first box was empty but the other box was full .
+at noon the first box was full but the other box was empty .
+this evening the first box was empty but the other box was full .
+this evening the first box was full but the other box was empty .
+on monday the first box was empty but the other box was full .
+on monday the first box was full but the other box was empty .
+on friday the first box was empty but the other box was full .
+on friday the first box was full but the other box was empty .
+today the first bag was empty but the other bag was full .
+today the first bag was full but the other bag was empty .
+this morning the first bag was empty but the other bag was full .
+this morning the first bag was full but the other bag was empty .
+at noon the first bag was empty but the other bag was full .
+at noon the first bag was full but the other bag was empty .
+this evening the first bag was empty but the other bag was full .
+this evening the first bag was full but the other bag was empty .
+on monday the first bag was empty but the other bag was full .
+on monday the first bag was full but the other bag was empty .
+on friday the first bag was empty but the other bag was full .
+on friday the first bag was full but the other bag was empty .
+today the first bottle was empty but the other bottle was full .
+today the first bottle was full but the other bottle was empty .
+this morning the first bottle was empty but the other bottle was full .
+this morning the first bottle was full but the other bottle was empty .
+at noon the first bottle was empty but the other bottle was full .
+at noon the first bottle was full but the other bottle was empty .
+this evening the first bottle was empty but the other bottle was full .
+this evening the first bottle was full but the other bottle was empty .
+on monday the first bottle was empty but the other bottle was full .
+on monday the first bottle was full but the other bottle was empty .
+on friday the first bottle was empty but the other bottle was full .
+on friday the first bottle was full but the other bottle was empty .
+today the first basket was empty but the other basket was full .
+today the first basket was full but the other basket was empty .
+this morning the first basket was empty but the other basket was full .
+this morning the first basket was full but the other basket was empty .
+at noon the first basket was empty but the other basket was full .
+at noon the first basket was full but the other basket was empty .
+this evening the first basket was empty but the other basket was full .
+this evening the first basket was full but the other basket was empty .
+on monday the first basket was empty but the other basket was full .
+on monday the first basket was full but the other basket was empty .
+on friday the first basket was empty but the other basket was full .
+on friday the first basket was full but the other basket was empty .
+today the first container was empty but the other container was full .
+today the first container was full but the other container was empty .
+this morning the first container was empty but the other container was full .
+this morning the first container was full but the other container was empty .
+at noon the first container was empty but the other container was full .
+at noon the first container was full but the other container was empty .
+this evening the first container was empty but the other container was full .
+this evening the first container was full but the other container was empty .
+on monday the first container was empty but the other container was full .
+on monday the first container was full but the other container was empty .
+on friday the first container was empty but the other container was full .
+on friday the first container was full but the other container was empty .
+the words empty and full describe contrasting conditions .
+the words full and empty describe contrasting conditions .
+empty contrasts with full in this lesson .
+full contrasts with empty in this lesson .
+we learned that empty and full have opposite meanings .
+we learned that full and empty have opposite meanings .
+today the first room was noisy but the other room was quiet .
+today the first room was quiet but the other room was noisy .
+this morning the first room was noisy but the other room was quiet .
+this morning the first room was quiet but the other room was noisy .
+at noon the first room was noisy but the other room was quiet .
+at noon the first room was quiet but the other room was noisy .
+this evening the first room was noisy but the other room was quiet .
+this evening the first room was quiet but the other room was noisy .
+on monday the first room was noisy but the other room was quiet .
+on monday the first room was quiet but the other room was noisy .
+on friday the first room was noisy but the other room was quiet .
+on friday the first room was quiet but the other room was noisy .
+today the first school was noisy but the other school was quiet .
+today the first school was quiet but the other school was noisy .
+this morning the first school was noisy but the other school was quiet .
+this morning the first school was quiet but the other school was noisy .
+at noon the first school was noisy but the other school was quiet .
+at noon the first school was quiet but the other school was noisy .
+this evening the first school was noisy but the other school was quiet .
+this evening the first school was quiet but the other school was noisy .
+on monday the first school was noisy but the other school was quiet .
+on monday the first school was quiet but the other school was noisy .
+on friday the first school was noisy but the other school was quiet .
+on friday the first school was quiet but the other school was noisy .
+today the first street was noisy but the other street was quiet .
+today the first street was quiet but the other street was noisy .
+this morning the first street was noisy but the other street was quiet .
+this morning the first street was quiet but the other street was noisy .
+at noon the first street was noisy but the other street was quiet .
+at noon the first street was quiet but the other street was noisy .
+this evening the first street was noisy but the other street was quiet .
+this evening the first street was quiet but the other street was noisy .
+on monday the first street was noisy but the other street was quiet .
+on monday the first street was quiet but the other street was noisy .
+on friday the first street was noisy but the other street was quiet .
+on friday the first street was quiet but the other street was noisy .
+today the first office was noisy but the other office was quiet .
+today the first office was quiet but the other office was noisy .
+this morning the first office was noisy but the other office was quiet .
+this morning the first office was quiet but the other office was noisy .
+at noon the first office was noisy but the other office was quiet .
+at noon the first office was quiet but the other office was noisy .
+this evening the first office was noisy but the other office was quiet .
+this evening the first office was quiet but the other office was noisy .
+on monday the first office was noisy but the other office was quiet .
+on monday the first office was quiet but the other office was noisy .
+on friday the first office was noisy but the other office was quiet .
+on friday the first office was quiet but the other office was noisy .
+today the first kitchen was noisy but the other kitchen was quiet .
+today the first kitchen was quiet but the other kitchen was noisy .
+this morning the first kitchen was noisy but the other kitchen was quiet .
+this morning the first kitchen was quiet but the other kitchen was noisy .
+at noon the first kitchen was noisy but the other kitchen was quiet .
+at noon the first kitchen was quiet but the other kitchen was noisy .
+this evening the first kitchen was noisy but the other kitchen was quiet .
+this evening the first kitchen was quiet but the other kitchen was noisy .
+on monday the first kitchen was noisy but the other kitchen was quiet .
+on monday the first kitchen was quiet but the other kitchen was noisy .
+on friday the first kitchen was noisy but the other kitchen was quiet .
+on friday the first kitchen was quiet but the other kitchen was noisy .
+today the first store was noisy but the other store was quiet .
+today the first store was quiet but the other store was noisy .
+this morning the first store was noisy but the other store was quiet .
+this morning the first store was quiet but the other store was noisy .
+at noon the first store was noisy but the other store was quiet .
+at noon the first store was quiet but the other store was noisy .
+this evening the first store was noisy but the other store was quiet .
+this evening the first store was quiet but the other store was noisy .
+on monday the first store was noisy but the other store was quiet .
+on monday the first store was quiet but the other store was noisy .
+on friday the first store was noisy but the other store was quiet .
+on friday the first store was quiet but the other store was noisy .
+the words noisy and quiet describe contrasting conditions .
+the words quiet and noisy describe contrasting conditions .
+noisy contrasts with quiet in this lesson .
+quiet contrasts with noisy in this lesson .
+we learned that noisy and quiet have opposite meanings .
+we learned that quiet and noisy have opposite meanings .
+today the first train was fast but the other train was slow .
+today the first train was slow but the other train was fast .
+this morning the first train was fast but the other train was slow .
+this morning the first train was slow but the other train was fast .
+at noon the first train was fast but the other train was slow .
+at noon the first train was slow but the other train was fast .
+this evening the first train was fast but the other train was slow .
+this evening the first train was slow but the other train was fast .
+on monday the first train was fast but the other train was slow .
+on monday the first train was slow but the other train was fast .
+on friday the first train was fast but the other train was slow .
+on friday the first train was slow but the other train was fast .
+today the first bus was fast but the other bus was slow .
+today the first bus was slow but the other bus was fast .
+this morning the first bus was fast but the other bus was slow .
+this morning the first bus was slow but the other bus was fast .
+at noon the first bus was fast but the other bus was slow .
+at noon the first bus was slow but the other bus was fast .
+this evening the first bus was fast but the other bus was slow .
+this evening the first bus was slow but the other bus was fast .
+on monday the first bus was fast but the other bus was slow .
+on monday the first bus was slow but the other bus was fast .
+on friday the first bus was fast but the other bus was slow .
+on friday the first bus was slow but the other bus was fast .
+today the first car was fast but the other car was slow .
+today the first car was slow but the other car was fast .
+this morning the first car was fast but the other car was slow .
+this morning the first car was slow but the other car was fast .
+at noon the first car was fast but the other car was slow .
+at noon the first car was slow but the other car was fast .
+this evening the first car was fast but the other car was slow .
+this evening the first car was slow but the other car was fast .
+on monday the first car was fast but the other car was slow .
+on monday the first car was slow but the other car was fast .
+on friday the first car was fast but the other car was slow .
+on friday the first car was slow but the other car was fast .
+today the first bicycle was fast but the other bicycle was slow .
+today the first bicycle was slow but the other bicycle was fast .
+this morning the first bicycle was fast but the other bicycle was slow .
+this morning the first bicycle was slow but the other bicycle was fast .
+at noon the first bicycle was fast but the other bicycle was slow .
+at noon the first bicycle was slow but the other bicycle was fast .
+this evening the first bicycle was fast but the other bicycle was slow .
+this evening the first bicycle was slow but the other bicycle was fast .
+on monday the first bicycle was fast but the other bicycle was slow .
+on monday the first bicycle was slow but the other bicycle was fast .
+on friday the first bicycle was fast but the other bicycle was slow .
+on friday the first bicycle was slow but the other bicycle was fast .
+today the first runner was fast but the other runner was slow .
+today the first runner was slow but the other runner was fast .
+this morning the first runner was fast but the other runner was slow .
+this morning the first runner was slow but the other runner was fast .
+at noon the first runner was fast but the other runner was slow .
+at noon the first runner was slow but the other runner was fast .
+this evening the first runner was fast but the other runner was slow .
+this evening the first runner was slow but the other runner was fast .
+on monday the first runner was fast but the other runner was slow .
+on monday the first runner was slow but the other runner was fast .
+on friday the first runner was fast but the other runner was slow .
+on friday the first runner was slow but the other runner was fast .
+today the first vehicle was fast but the other vehicle was slow .
+today the first vehicle was slow but the other vehicle was fast .
+this morning the first vehicle was fast but the other vehicle was slow .
+this morning the first vehicle was slow but the other vehicle was fast .
+at noon the first vehicle was fast but the other vehicle was slow .
+at noon the first vehicle was slow but the other vehicle was fast .
+this evening the first vehicle was fast but the other vehicle was slow .
+this evening the first vehicle was slow but the other vehicle was fast .
+on monday the first vehicle was fast but the other vehicle was slow .
+on monday the first vehicle was slow but the other vehicle was fast .
+on friday the first vehicle was fast but the other vehicle was slow .
+on friday the first vehicle was slow but the other vehicle was fast .
+the words fast and slow describe contrasting conditions .
+the words slow and fast describe contrasting conditions .
+fast contrasts with slow in this lesson .
+slow contrasts with fast in this lesson .
+we learned that fast and slow have opposite meanings .
+we learned that slow and fast have opposite meanings .
+today the first box was heavy but the other box was light .
+today the first box was light but the other box was heavy .
+this morning the first box was heavy but the other box was light .
+this morning the first box was light but the other box was heavy .
+at noon the first box was heavy but the other box was light .
+at noon the first box was light but the other box was heavy .
+this evening the first box was heavy but the other box was light .
+this evening the first box was light but the other box was heavy .
+on monday the first box was heavy but the other box was light .
+on monday the first box was light but the other box was heavy .
+on friday the first box was heavy but the other box was light .
+on friday the first box was light but the other box was heavy .
+today the first bag was heavy but the other bag was light .
+today the first bag was light but the other bag was heavy .
+this morning the first bag was heavy but the other bag was light .
+this morning the first bag was light but the other bag was heavy .
+at noon the first bag was heavy but the other bag was light .
+at noon the first bag was light but the other bag was heavy .
+this evening the first bag was heavy but the other bag was light .
+this evening the first bag was light but the other bag was heavy .
+on monday the first bag was heavy but the other bag was light .
+on monday the first bag was light but the other bag was heavy .
+on friday the first bag was heavy but the other bag was light .
+on friday the first bag was light but the other bag was heavy .
+today the first package was heavy but the other package was light .
+today the first package was light but the other package was heavy .
+this morning the first package was heavy but the other package was light .
+this morning the first package was light but the other package was heavy .
+at noon the first package was heavy but the other package was light .
+at noon the first package was light but the other package was heavy .
+this evening the first package was heavy but the other package was light .
+this evening the first package was light but the other package was heavy .
+on monday the first package was heavy but the other package was light .
+on monday the first package was light but the other package was heavy .
+on friday the first package was heavy but the other package was light .
+on friday the first package was light but the other package was heavy .
+today the first basket was heavy but the other basket was light .
+today the first basket was light but the other basket was heavy .
+this morning the first basket was heavy but the other basket was light .
+this morning the first basket was light but the other basket was heavy .
+at noon the first basket was heavy but the other basket was light .
+at noon the first basket was light but the other basket was heavy .
+this evening the first basket was heavy but the other basket was light .
+this evening the first basket was light but the other basket was heavy .
+on monday the first basket was heavy but the other basket was light .
+on monday the first basket was light but the other basket was heavy .
+on friday the first basket was heavy but the other basket was light .
+on friday the first basket was light but the other basket was heavy .
+today the first book was heavy but the other book was light .
+today the first book was light but the other book was heavy .
+this morning the first book was heavy but the other book was light .
+this morning the first book was light but the other book was heavy .
+at noon the first book was heavy but the other book was light .
+at noon the first book was light but the other book was heavy .
+this evening the first book was heavy but the other book was light .
+this evening the first book was light but the other book was heavy .
+on monday the first book was heavy but the other book was light .
+on monday the first book was light but the other book was heavy .
+on friday the first book was heavy but the other book was light .
+on friday the first book was light but the other book was heavy .
+today the first item was heavy but the other item was light .
+today the first item was light but the other item was heavy .
+this morning the first item was heavy but the other item was light .
+this morning the first item was light but the other item was heavy .
+at noon the first item was heavy but the other item was light .
+at noon the first item was light but the other item was heavy .
+this evening the first item was heavy but the other item was light .
+this evening the first item was light but the other item was heavy .
+on monday the first item was heavy but the other item was light .
+on monday the first item was light but the other item was heavy .
+on friday the first item was heavy but the other item was light .
+on friday the first item was light but the other item was heavy .
+the words heavy and light describe contrasting conditions .
+the words light and heavy describe contrasting conditions .
+heavy contrasts with light in this lesson .
+light contrasts with heavy in this lesson .
+we learned that heavy and light have opposite meanings .
+we learned that light and heavy have opposite meanings .
+today the first train was early but the other train was late .
+today the first train was late but the other train was early .
+this morning the first train was early but the other train was late .
+this morning the first train was late but the other train was early .
+at noon the first train was early but the other train was late .
+at noon the first train was late but the other train was early .
+this evening the first train was early but the other train was late .
+this evening the first train was late but the other train was early .
+on monday the first train was early but the other train was late .
+on monday the first train was late but the other train was early .
+on friday the first train was early but the other train was late .
+on friday the first train was late but the other train was early .
+today the first bus was early but the other bus was late .
+today the first bus was late but the other bus was early .
+this morning the first bus was early but the other bus was late .
+this morning the first bus was late but the other bus was early .
+at noon the first bus was early but the other bus was late .
+at noon the first bus was late but the other bus was early .
+this evening the first bus was early but the other bus was late .
+this evening the first bus was late but the other bus was early .
+on monday the first bus was early but the other bus was late .
+on monday the first bus was late but the other bus was early .
+on friday the first bus was early but the other bus was late .
+on friday the first bus was late but the other bus was early .
+today the first visitor was early but the other visitor was late .
+today the first visitor was late but the other visitor was early .
+this morning the first visitor was early but the other visitor was late .
+this morning the first visitor was late but the other visitor was early .
+at noon the first visitor was early but the other visitor was late .
+at noon the first visitor was late but the other visitor was early .
+this evening the first visitor was early but the other visitor was late .
+this evening the first visitor was late but the other visitor was early .
+on monday the first visitor was early but the other visitor was late .
+on monday the first visitor was late but the other visitor was early .
+on friday the first visitor was early but the other visitor was late .
+on friday the first visitor was late but the other visitor was early .
+today the first customer was early but the other customer was late .
+today the first customer was late but the other customer was early .
+this morning the first customer was early but the other customer was late .
+this morning the first customer was late but the other customer was early .
+at noon the first customer was early but the other customer was late .
+at noon the first customer was late but the other customer was early .
+this evening the first customer was early but the other customer was late .
+this evening the first customer was late but the other customer was early .
+on monday the first customer was early but the other customer was late .
+on monday the first customer was late but the other customer was early .
+on friday the first customer was early but the other customer was late .
+on friday the first customer was late but the other customer was early .
+today the first student was early but the other student was late .
+today the first student was late but the other student was early .
+this morning the first student was early but the other student was late .
+this morning the first student was late but the other student was early .
+at noon the first student was early but the other student was late .
+at noon the first student was late but the other student was early .
+this evening the first student was early but the other student was late .
+this evening the first student was late but the other student was early .
+on monday the first student was early but the other student was late .
+on monday the first student was late but the other student was early .
+on friday the first student was early but the other student was late .
+on friday the first student was late but the other student was early .
+today the first teacher was early but the other teacher was late .
+today the first teacher was late but the other teacher was early .
+this morning the first teacher was early but the other teacher was late .
+this morning the first teacher was late but the other teacher was early .
+at noon the first teacher was early but the other teacher was late .
+at noon the first teacher was late but the other teacher was early .
+this evening the first teacher was early but the other teacher was late .
+this evening the first teacher was late but the other teacher was early .
+on monday the first teacher was early but the other teacher was late .
+on monday the first teacher was late but the other teacher was early .
+on friday the first teacher was early but the other teacher was late .
+on friday the first teacher was late but the other teacher was early .
+the words early and late describe contrasting conditions .
+the words late and early describe contrasting conditions .
+early contrasts with late in this lesson .
+late contrasts with early in this lesson .
+we learned that early and late have opposite meanings .
+we learned that late and early have opposite meanings .
+today the first pillow was soft but the other pillow was hard .
+today the first pillow was hard but the other pillow was soft .
+this morning the first pillow was soft but the other pillow was hard .
+this morning the first pillow was hard but the other pillow was soft .
+at noon the first pillow was soft but the other pillow was hard .
+at noon the first pillow was hard but the other pillow was soft .
+this evening the first pillow was soft but the other pillow was hard .
+this evening the first pillow was hard but the other pillow was soft .
+on monday the first pillow was soft but the other pillow was hard .
+on monday the first pillow was hard but the other pillow was soft .
+on friday the first pillow was soft but the other pillow was hard .
+on friday the first pillow was hard but the other pillow was soft .
+today the first bed was soft but the other bed was hard .
+today the first bed was hard but the other bed was soft .
+this morning the first bed was soft but the other bed was hard .
+this morning the first bed was hard but the other bed was soft .
+at noon the first bed was soft but the other bed was hard .
+at noon the first bed was hard but the other bed was soft .
+this evening the first bed was soft but the other bed was hard .
+this evening the first bed was hard but the other bed was soft .
+on monday the first bed was soft but the other bed was hard .
+on monday the first bed was hard but the other bed was soft .
+on friday the first bed was soft but the other bed was hard .
+on friday the first bed was hard but the other bed was soft .
+today the first seat was soft but the other seat was hard .
+today the first seat was hard but the other seat was soft .
+this morning the first seat was soft but the other seat was hard .
+this morning the first seat was hard but the other seat was soft .
+at noon the first seat was soft but the other seat was hard .
+at noon the first seat was hard but the other seat was soft .
+this evening the first seat was soft but the other seat was hard .
+this evening the first seat was hard but the other seat was soft .
+on monday the first seat was soft but the other seat was hard .
+on monday the first seat was hard but the other seat was soft .
+on friday the first seat was soft but the other seat was hard .
+on friday the first seat was hard but the other seat was soft .
+today the first surface was soft but the other surface was hard .
+today the first surface was hard but the other surface was soft .
+this morning the first surface was soft but the other surface was hard .
+this morning the first surface was hard but the other surface was soft .
+at noon the first surface was soft but the other surface was hard .
+at noon the first surface was hard but the other surface was soft .
+this evening the first surface was soft but the other surface was hard .
+this evening the first surface was hard but the other surface was soft .
+on monday the first surface was soft but the other surface was hard .
+on monday the first surface was hard but the other surface was soft .
+on friday the first surface was soft but the other surface was hard .
+on friday the first surface was hard but the other surface was soft .
+today the first material was soft but the other material was hard .
+today the first material was hard but the other material was soft .
+this morning the first material was soft but the other material was hard .
+this morning the first material was hard but the other material was soft .
+at noon the first material was soft but the other material was hard .
+at noon the first material was hard but the other material was soft .
+this evening the first material was soft but the other material was hard .
+this evening the first material was hard but the other material was soft .
+on monday the first material was soft but the other material was hard .
+on monday the first material was hard but the other material was soft .
+on friday the first material was soft but the other material was hard .
+on friday the first material was hard but the other material was soft .
+today the first cushion was soft but the other cushion was hard .
+today the first cushion was hard but the other cushion was soft .
+this morning the first cushion was soft but the other cushion was hard .
+this morning the first cushion was hard but the other cushion was soft .
+at noon the first cushion was soft but the other cushion was hard .
+at noon the first cushion was hard but the other cushion was soft .
+this evening the first cushion was soft but the other cushion was hard .
+this evening the first cushion was hard but the other cushion was soft .
+on monday the first cushion was soft but the other cushion was hard .
+on monday the first cushion was hard but the other cushion was soft .
+on friday the first cushion was soft but the other cushion was hard .
+on friday the first cushion was hard but the other cushion was soft .
+the words soft and hard describe contrasting conditions .
+the words hard and soft describe contrasting conditions .
+soft contrasts with hard in this lesson .
+hard contrasts with soft in this lesson .
+we learned that soft and hard have opposite meanings .
+we learned that hard and soft have opposite meanings .
+today the first music was loud but the other music was quiet .
+today the first music was quiet but the other music was loud .
+this morning the first music was loud but the other music was quiet .
+this morning the first music was quiet but the other music was loud .
+at noon the first music was loud but the other music was quiet .
+at noon the first music was quiet but the other music was loud .
+this evening the first music was loud but the other music was quiet .
+this evening the first music was quiet but the other music was loud .
+on monday the first music was loud but the other music was quiet .
+on monday the first music was quiet but the other music was loud .
+on friday the first music was loud but the other music was quiet .
+on friday the first music was quiet but the other music was loud .
+today the first sound was loud but the other sound was quiet .
+today the first sound was quiet but the other sound was loud .
+this morning the first sound was loud but the other sound was quiet .
+this morning the first sound was quiet but the other sound was loud .
+at noon the first sound was loud but the other sound was quiet .
+at noon the first sound was quiet but the other sound was loud .
+this evening the first sound was loud but the other sound was quiet .
+this evening the first sound was quiet but the other sound was loud .
+on monday the first sound was loud but the other sound was quiet .
+on monday the first sound was quiet but the other sound was loud .
+on friday the first sound was loud but the other sound was quiet .
+on friday the first sound was quiet but the other sound was loud .
+today the first voice was loud but the other voice was quiet .
+today the first voice was quiet but the other voice was loud .
+this morning the first voice was loud but the other voice was quiet .
+this morning the first voice was quiet but the other voice was loud .
+at noon the first voice was loud but the other voice was quiet .
+at noon the first voice was quiet but the other voice was loud .
+this evening the first voice was loud but the other voice was quiet .
+this evening the first voice was quiet but the other voice was loud .
+on monday the first voice was loud but the other voice was quiet .
+on monday the first voice was quiet but the other voice was loud .
+on friday the first voice was loud but the other voice was quiet .
+on friday the first voice was quiet but the other voice was loud .
+today the first radio was loud but the other radio was quiet .
+today the first radio was quiet but the other radio was loud .
+this morning the first radio was loud but the other radio was quiet .
+this morning the first radio was quiet but the other radio was loud .
+at noon the first radio was loud but the other radio was quiet .
+at noon the first radio was quiet but the other radio was loud .
+this evening the first radio was loud but the other radio was quiet .
+this evening the first radio was quiet but the other radio was loud .
+on monday the first radio was loud but the other radio was quiet .
+on monday the first radio was quiet but the other radio was loud .
+on friday the first radio was loud but the other radio was quiet .
+on friday the first radio was quiet but the other radio was loud .
+today the first bell was loud but the other bell was quiet .
+today the first bell was quiet but the other bell was loud .
+this morning the first bell was loud but the other bell was quiet .
+this morning the first bell was quiet but the other bell was loud .
+at noon the first bell was loud but the other bell was quiet .
+at noon the first bell was quiet but the other bell was loud .
+this evening the first bell was loud but the other bell was quiet .
+this evening the first bell was quiet but the other bell was loud .
+on monday the first bell was loud but the other bell was quiet .
+on monday the first bell was quiet but the other bell was loud .
+on friday the first bell was loud but the other bell was quiet .
+on friday the first bell was quiet but the other bell was loud .
+today the first song was loud but the other song was quiet .
+today the first song was quiet but the other song was loud .
+this morning the first song was loud but the other song was quiet .
+this morning the first song was quiet but the other song was loud .
+at noon the first song was loud but the other song was quiet .
+at noon the first song was quiet but the other song was loud .
+this evening the first song was loud but the other song was quiet .
+this evening the first song was quiet but the other song was loud .
+on monday the first song was loud but the other song was quiet .
+on monday the first song was quiet but the other song was loud .
+on friday the first song was loud but the other song was quiet .
+on friday the first song was quiet but the other song was loud .
+the words loud and quiet describe contrasting conditions .
+the words quiet and loud describe contrasting conditions .
+loud contrasts with quiet in this lesson .
+quiet contrasts with loud in this lesson .
+we learned that loud and quiet have opposite meanings .
+we learned that quiet and loud have opposite meanings .
+today the first water was warm but the other water was cool .
+today the first water was cool but the other water was warm .
+this morning the first water was warm but the other water was cool .
+this morning the first water was cool but the other water was warm .
+at noon the first water was warm but the other water was cool .
+at noon the first water was cool but the other water was warm .
+this evening the first water was warm but the other water was cool .
+this evening the first water was cool but the other water was warm .
+on monday the first water was warm but the other water was cool .
+on monday the first water was cool but the other water was warm .
+on friday the first water was warm but the other water was cool .
+on friday the first water was cool but the other water was warm .
+today the first room was warm but the other room was cool .
+today the first room was cool but the other room was warm .
+this morning the first room was warm but the other room was cool .
+this morning the first room was cool but the other room was warm .
+at noon the first room was warm but the other room was cool .
+at noon the first room was cool but the other room was warm .
+this evening the first room was warm but the other room was cool .
+this evening the first room was cool but the other room was warm .
+on monday the first room was warm but the other room was cool .
+on monday the first room was cool but the other room was warm .
+on friday the first room was warm but the other room was cool .
+on friday the first room was cool but the other room was warm .
+today the first drink was warm but the other drink was cool .
+today the first drink was cool but the other drink was warm .
+this morning the first drink was warm but the other drink was cool .
+this morning the first drink was cool but the other drink was warm .
+at noon the first drink was warm but the other drink was cool .
+at noon the first drink was cool but the other drink was warm .
+this evening the first drink was warm but the other drink was cool .
+this evening the first drink was cool but the other drink was warm .
+on monday the first drink was warm but the other drink was cool .
+on monday the first drink was cool but the other drink was warm .
+on friday the first drink was warm but the other drink was cool .
+on friday the first drink was cool but the other drink was warm .
+today the first milk was warm but the other milk was cool .
+today the first milk was cool but the other milk was warm .
+this morning the first milk was warm but the other milk was cool .
+this morning the first milk was cool but the other milk was warm .
+at noon the first milk was warm but the other milk was cool .
+at noon the first milk was cool but the other milk was warm .
+this evening the first milk was warm but the other milk was cool .
+this evening the first milk was cool but the other milk was warm .
+on monday the first milk was warm but the other milk was cool .
+on monday the first milk was cool but the other milk was warm .
+on friday the first milk was warm but the other milk was cool .
+on friday the first milk was cool but the other milk was warm .
+today the first air was warm but the other air was cool .
+today the first air was cool but the other air was warm .
+this morning the first air was warm but the other air was cool .
+this morning the first air was cool but the other air was warm .
+at noon the first air was warm but the other air was cool .
+at noon the first air was cool but the other air was warm .
+this evening the first air was warm but the other air was cool .
+this evening the first air was cool but the other air was warm .
+on monday the first air was warm but the other air was cool .
+on monday the first air was cool but the other air was warm .
+on friday the first air was warm but the other air was cool .
+on friday the first air was cool but the other air was warm .
+today the first kitchen was warm but the other kitchen was cool .
+today the first kitchen was cool but the other kitchen was warm .
+this morning the first kitchen was warm but the other kitchen was cool .
+this morning the first kitchen was cool but the other kitchen was warm .
+at noon the first kitchen was warm but the other kitchen was cool .
+at noon the first kitchen was cool but the other kitchen was warm .
+this evening the first kitchen was warm but the other kitchen was cool .
+this evening the first kitchen was cool but the other kitchen was warm .
+on monday the first kitchen was warm but the other kitchen was cool .
+on monday the first kitchen was cool but the other kitchen was warm .
+on friday the first kitchen was warm but the other kitchen was cool .
+on friday the first kitchen was cool but the other kitchen was warm .
+the words warm and cool describe contrasting conditions .
+the words cool and warm describe contrasting conditions .
+warm contrasts with cool in this lesson .
+cool contrasts with warm in this lesson .
+we learned that warm and cool have opposite meanings .
+we learned that cool and warm have opposite meanings .
+today the first door was wide but the other door was narrow .
+today the first door was narrow but the other door was wide .
+this morning the first door was wide but the other door was narrow .
+this morning the first door was narrow but the other door was wide .
+at noon the first door was wide but the other door was narrow .
+at noon the first door was narrow but the other door was wide .
+this evening the first door was wide but the other door was narrow .
+this evening the first door was narrow but the other door was wide .
+on monday the first door was wide but the other door was narrow .
+on monday the first door was narrow but the other door was wide .
+on friday the first door was wide but the other door was narrow .
+on friday the first door was narrow but the other door was wide .
+today the first street was wide but the other street was narrow .
+today the first street was narrow but the other street was wide .
+this morning the first street was wide but the other street was narrow .
+this morning the first street was narrow but the other street was wide .
+at noon the first street was wide but the other street was narrow .
+at noon the first street was narrow but the other street was wide .
+this evening the first street was wide but the other street was narrow .
+this evening the first street was narrow but the other street was wide .
+on monday the first street was wide but the other street was narrow .
+on monday the first street was narrow but the other street was wide .
+on friday the first street was wide but the other street was narrow .
+on friday the first street was narrow but the other street was wide .
+today the first road was wide but the other road was narrow .
+today the first road was narrow but the other road was wide .
+this morning the first road was wide but the other road was narrow .
+this morning the first road was narrow but the other road was wide .
+at noon the first road was wide but the other road was narrow .
+at noon the first road was narrow but the other road was wide .
+this evening the first road was wide but the other road was narrow .
+this evening the first road was narrow but the other road was wide .
+on monday the first road was wide but the other road was narrow .
+on monday the first road was narrow but the other road was wide .
+on friday the first road was wide but the other road was narrow .
+on friday the first road was narrow but the other road was wide .
+today the first window was wide but the other window was narrow .
+today the first window was narrow but the other window was wide .
+this morning the first window was wide but the other window was narrow .
+this morning the first window was narrow but the other window was wide .
+at noon the first window was wide but the other window was narrow .
+at noon the first window was narrow but the other window was wide .
+this evening the first window was wide but the other window was narrow .
+this evening the first window was narrow but the other window was wide .
+on monday the first window was wide but the other window was narrow .
+on monday the first window was narrow but the other window was wide .
+on friday the first window was wide but the other window was narrow .
+on friday the first window was narrow but the other window was wide .
+today the first path was wide but the other path was narrow .
+today the first path was narrow but the other path was wide .
+this morning the first path was wide but the other path was narrow .
+this morning the first path was narrow but the other path was wide .
+at noon the first path was wide but the other path was narrow .
+at noon the first path was narrow but the other path was wide .
+this evening the first path was wide but the other path was narrow .
+this evening the first path was narrow but the other path was wide .
+on monday the first path was wide but the other path was narrow .
+on monday the first path was narrow but the other path was wide .
+on friday the first path was wide but the other path was narrow .
+on friday the first path was narrow but the other path was wide .
+today the first bridge was wide but the other bridge was narrow .
+today the first bridge was narrow but the other bridge was wide .
+this morning the first bridge was wide but the other bridge was narrow .
+this morning the first bridge was narrow but the other bridge was wide .
+at noon the first bridge was wide but the other bridge was narrow .
+at noon the first bridge was narrow but the other bridge was wide .
+this evening the first bridge was wide but the other bridge was narrow .
+this evening the first bridge was narrow but the other bridge was wide .
+on monday the first bridge was wide but the other bridge was narrow .
+on monday the first bridge was narrow but the other bridge was wide .
+on friday the first bridge was wide but the other bridge was narrow .
+on friday the first bridge was narrow but the other bridge was wide .
+the words wide and narrow describe contrasting conditions .
+the words narrow and wide describe contrasting conditions .
+wide contrasts with narrow in this lesson .
+narrow contrasts with wide in this lesson .
+we learned that wide and narrow have opposite meanings .
+we learned that narrow and wide have opposite meanings .
+today the first door was open but the other door was closed .
+today the first door was closed but the other door was open .
+this morning the first door was open but the other door was closed .
+this morning the first door was closed but the other door was open .
+at noon the first door was open but the other door was closed .
+at noon the first door was closed but the other door was open .
+this evening the first door was open but the other door was closed .
+this evening the first door was closed but the other door was open .
+on monday the first door was open but the other door was closed .
+on monday the first door was closed but the other door was open .
+on friday the first door was open but the other door was closed .
+on friday the first door was closed but the other door was open .
+today the first window was open but the other window was closed .
+today the first window was closed but the other window was open .
+this morning the first window was open but the other window was closed .
+this morning the first window was closed but the other window was open .
+at noon the first window was open but the other window was closed .
+at noon the first window was closed but the other window was open .
+this evening the first window was open but the other window was closed .
+this evening the first window was closed but the other window was open .
+on monday the first window was open but the other window was closed .
+on monday the first window was closed but the other window was open .
+on friday the first window was open but the other window was closed .
+on friday the first window was closed but the other window was open .
+today the first store was open but the other store was closed .
+today the first store was closed but the other store was open .
+this morning the first store was open but the other store was closed .
+this morning the first store was closed but the other store was open .
+at noon the first store was open but the other store was closed .
+at noon the first store was closed but the other store was open .
+this evening the first store was open but the other store was closed .
+this evening the first store was closed but the other store was open .
+on monday the first store was open but the other store was closed .
+on monday the first store was closed but the other store was open .
+on friday the first store was open but the other store was closed .
+on friday the first store was closed but the other store was open .
+today the first box was open but the other box was closed .
+today the first box was closed but the other box was open .
+this morning the first box was open but the other box was closed .
+this morning the first box was closed but the other box was open .
+at noon the first box was open but the other box was closed .
+at noon the first box was closed but the other box was open .
+this evening the first box was open but the other box was closed .
+this evening the first box was closed but the other box was open .
+on monday the first box was open but the other box was closed .
+on monday the first box was closed but the other box was open .
+on friday the first box was open but the other box was closed .
+on friday the first box was closed but the other box was open .
+today the first gate was open but the other gate was closed .
+today the first gate was closed but the other gate was open .
+this morning the first gate was open but the other gate was closed .
+this morning the first gate was closed but the other gate was open .
+at noon the first gate was open but the other gate was closed .
+at noon the first gate was closed but the other gate was open .
+this evening the first gate was open but the other gate was closed .
+this evening the first gate was closed but the other gate was open .
+on monday the first gate was open but the other gate was closed .
+on monday the first gate was closed but the other gate was open .
+on friday the first gate was open but the other gate was closed .
+on friday the first gate was closed but the other gate was open .
+today the first office was open but the other office was closed .
+today the first office was closed but the other office was open .
+this morning the first office was open but the other office was closed .
+this morning the first office was closed but the other office was open .
+at noon the first office was open but the other office was closed .
+at noon the first office was closed but the other office was open .
+this evening the first office was open but the other office was closed .
+this evening the first office was closed but the other office was open .
+on monday the first office was open but the other office was closed .
+on monday the first office was closed but the other office was open .
+on friday the first office was open but the other office was closed .
+on friday the first office was closed but the other office was open .
+the words open and closed describe contrasting conditions .
+the words closed and open describe contrasting conditions .
+open contrasts with closed in this lesson .
+closed contrasts with open in this lesson .
+we learned that open and closed have opposite meanings .
+we learned that closed and open have opposite meanings .
+the round table is in the kitchen .
+the round table is near the window .
+the round table is inside the store .
+the round table is on the shelf .
+the round plate is in the kitchen .
+the round plate is near the window .
+the round plate is inside the store .
+the round plate is on the shelf .
+the round mirror is in the kitchen .
+the round mirror is near the window .
+the round mirror is inside the store .
+the round mirror is on the shelf .
+the round clock is in the kitchen .
+the round clock is near the window .
+the round clock is inside the store .
+the round clock is on the shelf .
+the round button is in the kitchen .
+the round button is near the window .
+the round button is inside the store .
+the round button is on the shelf .
+the round coin is in the kitchen .
+the round coin is near the window .
+the round coin is inside the store .
+the round coin is on the shelf .

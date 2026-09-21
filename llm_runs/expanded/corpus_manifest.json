@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "file": "grammar.txt",
+      "bytes": 49299,
+      "sha256": "e4105cca214978c8500355fb7dfcf37b4e4f3f07d0364dc1cbc5358eafd2cbc4",
+      "warnings": [],
+      "characters": 49299,
+      "passages": 1256,
+      "unique_passages": 1256,
+      "preview": "a cat is quiet near the school .\ntwo cats are quiet near the school .\nthose cats were quiet near the school .\nthis cat was quiet near the school .\na cat is happy near the school .\ntwo cats are happy near the school .\nthose cats were happy near the school .\nthis cat was happy near the school .\na cat "
+    },
+    {
+      "file": "opposites.txt",
+      "bytes": 57408,
+      "sha256": "b3e77bf605d1dee6275c920d789570f77745a82d953e215e1a8b9d5650663a7c",
+      "warnings": [],
+      "characters": 57408,
+      "passages": 882,
+      "unique_passages": 882,
+      "preview": "today the first soup was hot but the other soup was cold .\ntoday the first soup was cold but the other soup was hot .\nthis morning the first soup was hot but the other soup was cold .\nthis morning the first soup was cold but the other soup was hot .\nat noon the first soup was hot but the other soup "
+    }
+  ],
+  "ignored": [],
+  "external_passages": 2138,
+  "mode": "classroom",
+  "base_passages": 6200,
+  "unique_passages": 6730,
+  "new_unique_passages": 2138,
+  "duplicates_removed": 1608,
+  "max_passage_tokens": 47,
+  "split_unit": "deduplicated passage, not source file"
+}
