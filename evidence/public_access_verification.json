@@ -1,0 +1,74 @@
+[
+  {
+    "path": "README.md",
+    "status": 200,
+    "sha256": "cc720cf735181bbb2370505c2e7de38eb9ed3c68509aa6731b0ce65bde8593af",
+    "anonymous_access": true
+  },
+  {
+    "path": "starter_custom_llm.ipynb",
+    "status": 200,
+    "sha256": "61c62c7abf768fbc03b9bd92e49f1e441b6f8f57984498b3542418974da68a1e",
+    "anonymous_access": true
+  },
+  {
+    "path": "expanded_custom_llm.ipynb",
+    "status": 200,
+    "sha256": "5a02594b55364af5fd4181b71163b0e77aa8017b130ee8c2c050ab007b3d09be",
+    "anonymous_access": true
+  },
+  {
+    "path": "expanded_6000_custom_llm.ipynb",
+    "status": 200,
+    "sha256": "baed9c7edc06f35f2b4e766314bf38e8181269fc6d1d869e5dbfc518d2c35277",
+    "anonymous_access": true
+  },
+  {
+    "path": "llm_runs/starter/training_curves.svg",
+    "status": 200,
+    "sha256": "30e28f7a5272d947a330ba25a388b81585d79c2cec9fab5d454faf16ef3e2fa2",
+    "anonymous_access": true
+  },
+  {
+    "path": "llm_runs/expanded/training_curves.svg",
+    "status": 200,
+    "sha256": "e729e311c723206e68b0979c0fea4ed93865489a900fbf64922d6bb73cb95196",
+    "anonymous_access": true
+  },
+  {
+    "path": "llm_runs/starter/samples/step_3000.txt",
+    "status": 200,
+    "sha256": "01a7bee42e6ded5ce995385790e6b52391d4434fb463eba122f1810c20f97ba2",
+    "anonymous_access": true
+  },
+  {
+    "path": "llm_runs/expanded/model.pt",
+    "status": 200,
+    "sha256": "a2783ef7aa37540a839be02681a6f0682611f504108151c17bdf21bafb32a00d",
+    "anonymous_access": true
+  },
+  {
+    "path": "evidence/chat.cast",
+    "status": 200,
+    "sha256": "a456cb43592fe85a0079e45b1d92a9bf6d9e26c447392f79fbe36cbd5a892812",
+    "anonymous_access": true
+  },
+  {
+    "path": "evidence/chat_transcript.json",
+    "status": 200,
+    "sha256": "73c455f272bcb0c1da9ef101a835eb748ad266173fe883acfac41c69e1f1cb40",
+    "anonymous_access": true
+  },
+  {
+    "path": "corpus/expanded/grammar.txt",
+    "status": 200,
+    "sha256": "e4105cca214978c8500355fb7dfcf37b4e4f3f07d0364dc1cbc5358eafd2cbc4",
+    "anonymous_access": true
+  },
+  {
+    "path": "corpus/expanded/opposites.txt",
+    "status": 200,
+    "sha256": "b3e77bf605d1dee6275c920d789570f77745a82d953e215e1a8b9d5650663a7c",
+    "anonymous_access": true
+  }
+]

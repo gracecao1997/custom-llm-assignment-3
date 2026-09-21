@@ -436,3 +436,5 @@ The ZIPs preserve complete run evidence; executed notebooks are separate files l
 
 
 Structural checks are saved in [submission_audit.json](evidence/submission_audit.json). The unmodified `custom_llm.py` is the upstream source reference used by the corpus tests; run the configured experiment notebooks linked above to reproduce the submitted settings.
+
+After execution, notebook artifact-link paths were normalized from local absolute paths to repository-relative links for GitHub viewing. No numerical, sample, or evaluation output was changed. Public access was checked without authentication; the notebook preview also renders the saved loss plot and inspections.
