@@ -1,0 +1,37 @@
+{
+  "model": "llm_runs/source_expanded/model.pt",
+  "model_sha256": "f9ae30b1b049d8cdc1c96a25e6073be827571ad4d6a6769e139f8bf076c57e06",
+  "completed_steps": 3000,
+  "fresh_context_per_prompt": true,
+  "temperature": 0.8,
+  "max_tokens": 24,
+  "turns": [
+    {
+      "prompt": "the customer",
+      "seed": 2026,
+      "response": "<UNK> the product after checking the price .",
+      "unknown_prompt_words": [],
+      "prompt_truncated": false
+    },
+    {
+      "prompt": "a cat",
+      "seed": 2027,
+      "response": "is <UNK> in the <UNK> it in its <UNK> of a <UNK> ; <UNK> of <UNK> <UNK> <UNK> , a <UNK> ; as ,",
+      "unknown_prompt_words": [
+        "cat"
+      ],
+      "prompt_truncated": false
+    },
+    {
+      "prompt": "explain quantum teleportation",
+      "seed": 2028,
+      "response": ".",
+      "unknown_prompt_words": [
+        "explain",
+        "quantum",
+        "teleportation"
+      ],
+      "prompt_truncated": false
+    }
+  ]
+}

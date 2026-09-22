@@ -1,5 +1,5 @@
 """Execute a submitted notebook without overwriting the submitted run or outputs.
-Usage: python reproduce.py --experiment starter
+Usage: python reproduce.py --experiment source_starter
 """
 import argparse
 from datetime import datetime, timezone
@@ -10,12 +10,12 @@ from nbclient import NotebookClient
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--experiment', choices=['starter', 'expanded', 'expanded_6000', 'all'], default='all')
+    parser.add_argument('--experiment', choices=['source_starter', 'source_expanded', 'source_expanded_6000', 'all'], default='all')
     parser.add_argument('--kernel', default='python3', help='Installed Jupyter kernel name')
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S_%fZ')
-    experiments = ['starter', 'expanded', 'expanded_6000'] if args.experiment == 'all' else [args.experiment]
+    experiments = ['source_starter', 'source_expanded', 'source_expanded_6000'] if args.experiment == 'all' else [args.experiment]
     for name in experiments:
         notebook = nbformat.read(root / (name + '_custom_llm.ipynb'), as_version=4)
         for cell in notebook.cells:

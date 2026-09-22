@@ -1,0 +1,13 @@
+number of parameters: 0.13M
+Tiny language model: short continuations, not a general assistant.
+Each prompt starts fresh. Context: 48 tokens. Type /quit to exit.
+You: the customer
+Model: <UNK> the product after checking the price .
+You: a cat
+Model: is <UNK> in the <UNK> it in its <UNK> of a <UNK> ; <UNK> of <UNK> <UNK> <UNK> , a <UNK> ; as ,
+Unknown words: cat
+You: explain quantum teleportation
+Model: .
+Unknown words: explain, quantum, teleportation
+You: /quit
+Saved transcript: source_evidence/chat_transcript.json

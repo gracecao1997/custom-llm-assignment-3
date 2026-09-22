@@ -1,42 +1,29 @@
-# Assignment evidence checklist
+# Revised submission: requirement-to-evidence map
 
-This checklist maps the provided assignment to actual artifacts. It is an evidence audit, not a prediction of the instructor's score. All required experiments are complete; the only proposed experiment in the README is explicitly distinguished from the completed 6,000-step follow-up.
+The current submission uses independent, complete published book bodies. Earlier synthetic experiments are retained in [SYNTHETIC_EXPERIMENTS.md](SYNTHETIC_EXPERIMENTS.md), with their [historical checklist](SYNTHETIC_REQUIREMENTS_CHECK.md). Earlier exposure to the public tests is disclosed; this revision is not a blind evaluation.
 
-| Requirement | Evidence and review |
+| Requirement | Current evidence |
 |---|---|
-| Executed starter and expanded notebooks | [Starter](starter_custom_llm.ipynb), [expanded](expanded_custom_llm.ipynb); all 12 code cells in each have execution counts, no error outputs, and visible plot/inspection results |
-| Settings and predictions before training | Notebook section 1 and prediction cell; [recorded plan](PRETRAINING_PLAN.md) |
-| At least two extension categories | Grammar and opposites; [1,256 grammar passages](corpus/expanded/grammar.txt), [882 contrast passages](corpus/expanded/opposites.txt); rationale and permissions in README |
-| Corpus inspection and extraction warnings | [Starter manifest](llm_runs/starter/corpus_manifest.json), [expanded manifest](llm_runs/expanded/corpus_manifest.json); TXT only, no extraction warnings, no PDF/OCR claim |
-| Training-only vocabulary and both UNK rates | [Starter report](llm_runs/starter/vocabulary_report.json), [expanded report](llm_runs/expanded/vocabulary_report.json); both corpus UNK rates and separate benchmark coverage reported |
-| Split and fixed panels | [Starter split](llm_runs/starter/split.json), [expanded split](llm_runs/expanded/split.json); disjoint passages, 20 documents per panel, limitations explicitly stated |
-| Actual steps, time, hardware and parameters | Both config/training_summary files and README run table; interrupted setup attempt disclosed, all submitted training complete |
-| Untrained, halfway and final samples | Every saved string appears in README; both samples directories retain complete files with fixed generation settings |
-| Plot and full measured loss table | Both training_curves.svg files embedded in README; all three measurements per main run included; batch loss distinguished from fixed-panel loss |
-| Word ID and full 64-number vectors before/after | Both inspection.json and tokenization.json files linked; all coordinates shown in README and notebooks |
-| Real gradient and parameter update | Recorded customer coordinate 0 before/gradient/after and effective warmup learning rate; AdamW/clipping explanation |
-| Next-token probabilities, attention and learning | Actual prefix probability change and saved first-head attention; corpus, IDs, vectors, embeddings, weights, loss and backpropagation explained |
-| Temperature comparison without retraining | Both temperature_comparison.json files; all 0.3/0.8/1.2 strings shown with fixed BOS and seed; identical outputs not hidden |
-| Four unchanged 48-case evaluations | 192 required case-stage records across starter/expanded untrained/final; complete CSV/JSON/summary links; original suite and scoring hashes checked |
-| Scores, coverage, groups, categories and failures | Four-row main table, complete breakdowns, full result files, concrete incorrect and unscorable examples, paired common-case analysis |
-| Free continuations distinct from choice scores | Actual strings and examples of correct choice/incoherent continuation, including empty output |
-| Training/evaluation separation | [Detailed audit](evidence/detailed_audit.json), both separation reports, original runner protections; 160 reserved passages removed; no eval files or output folders used as corpus |
-| Completed corpus comparison | Two original runs retained; comparison distinguishes vocabulary change, learned prediction change and confounds; calls suite a public development benchmark |
-| Working interface on saved trained nanoGPT | Unchanged [chat.py](chat.py) loads expanded/model.pt and saved vocabulary; no API or canned replies |
-| At least three interactions plus screenshot or recording | [Original terminal recording](evidence/chat.cast), [inline GIF](evidence/chat_recording.gif), [transcript](evidence/chat_transcript.json); includes failure, model hash, unknown-word warning and fresh-context description |
-| Instructions and independently rerunnable evaluations | Exact README chat/eval commands; all six saved-model reruns match, and all three fresh training runs reproduce original numerical evidence |
-| Proposed next experiment and limitation | README states a concrete future data-design experiment and limitations; actual [6,000-step follow-up](expanded_6000_custom_llm.ipynb) goes beyond the two required runs |
-| Save both ZIPs and notebooks | [Starter ZIP](llm_runs/starter.zip), [expanded ZIP](llm_runs/expanded.zip), separate executed notebooks; audit verifies every archived file against the run folder |
-| Public repository accessibility | Anonymous access verified and GitHub notebook preview inspected; final course-portal submission remains the student's action |
+| English report and two executed main notebooks | [README](README.md), [baseline](source_starter_custom_llm.ipynb), [source expansion](source_expanded_custom_llm.ipynb) |
+| Predictions and settings before training | [Committed source revision plan](SOURCE_REVISION_PLAN.md), commit c924df9; notebook configuration cells |
+| Two extension categories with sources | Grammar and synonyms/antonyms; [original sources](source_materials/sources.json), complete editions with notices in source_materials, source attribution in README |
+| Inspect corpus and document preparation | [Deterministic preparation](prepare_source_corpus.py), [hashes and counts](source_materials/preparation_manifest.json), run corpus_manifest.json files; no PDF/OCR claim |
+| Training-only vocabulary, UNK and data split | Each run’s vocabulary_report.json, tokenization.json and split.json; README reports train and validation UNK, passage-level split limitations and 20-document fixed panels |
+| Actual training, hardware and time | Main runs each complete 3,000 steps at initial learning rate 0.001; config.json, training_summary.json and executed outputs |
+| Learning explanation and weight evidence | README and notebook outputs show token IDs, full 64-dimensional before/after embeddings, actual gradient and parameter update, next-token probabilities and attention |
+| Measured losses, plots and samples | All measured panel losses, training_curves.svg and complete untrained/halfway/final samples retained and shown in README |
+| Temperature comparisons | Complete saved generations at 0.3, 0.8 and 1.2, with fixed prompts and seeds, in README and temperature_comparison.json |
+| Four complete unchanged evaluations | Main runs’ language_evals/untrained and language_evals/final contain all 48 cases in CSV and JSON plus summaries; 192 required case-stage records |
+| Coverage, accuracy, categories and failures | README distinguishes all-case from scorable accuracy, includes all groups/categories and real continuations; all 24 extension cases remain unscorable |
+| Separation and reproducibility | [Audit](source_evidence/detailed_audit.json), original suite/runner hashes and reserved-prefix guardrail; no eval output used as corpus. Exact checks do not establish absence of semantic contamination |
+| Saved checkpoint and working chat | Original [chat.py](chat.py), source_expanded/model.pt and saved vocabulary; README launch commands |
+| Three real interactions and recording | [PTY recording](source_evidence/chat.cast), [transcript](source_evidence/chat_transcript.json), [GIF rendering of recorded text](source_evidence/chat_recording.gif). GIF is explicitly a replay, not a native screenshot |
+| Independent saved-model evaluation reruns | [Six exact rerun comparisons](source_evidence/rerun_verification.json); all 288 case-stage records match the saved outputs |
+| Executed follow-up and proposed next experiment | [6,000-step notebook](source_expanded_6000_custom_llm.ipynb), same corpus/split/vocabulary/initial weights; future vocabulary-cap change is clearly unexecuted |
+| Saved run ZIPs and separate notebooks | [Baseline ZIP](llm_runs/source_starter.zip), [expanded ZIP](llm_runs/source_expanded.zip), [follow-up ZIP](llm_runs/source_expanded_6000.zip); audit compares archive bytes with saved files |
+| Reproduction tools | [Audit code](verify_submission.py), [training reproduction helper](reproduce.py), [comparison helper](compare_reproductions.py); no claim of additional fresh retraining beyond the three executed revised notebooks |
+| Transparent AI assistance and history | README discloses AI contributions and prior test exposure; old higher-scoring synthetic runs remain available. Technical prose is not presented as proof of personal mastery |
 
-## Review findings that were addressed
+## Limits requiring honest interpretation
 
-- Re-running the submitted notebook originally required a manual folder edit. It now allocates a new timestamped folder automatically and was tested by completing all three notebooks again.
-- The terminal recording originally required a downloaded player. A clearly labeled GIF replay and still frame now show the exact recorded text directly in GitHub.
-- Verification reports originally lacked reusable checking code. The submission now includes verify_submission.py, reproduce.py and compare_reproductions.py, plus real execution reports.
-- The learning comparison now includes all 48 paired case statuses and a fixed common-case denominator. The 7-case gain is separated into 3 common-case gains and 4 newly covered correct cases.
-- The notebook interpretation cells now explain actual results locally instead of merely referring the reader to the README.
-
-## Limits preserved in the explanation
-
-No minimum eval score is required. Nineteen expanded cases are still unscorable, one known-vocabulary opposite case fails, and free responses can be incoherent. These results are retained and explained rather than optimized away. One seed and the small public suite do not establish statistical generalization. Exact prefix checks do not prove absence of every semantic leak. AI assistance is disclosed; the student should be able to explain the recorded learning evidence in their own words.
+The revised scores are 20/48, 23/48 and 24/48. The follow-up's 100% scorable accuracy covers only half the suite. A 512-token cap and about 27% UNK in the expanded corpus prevent extension coverage. One seed, related passages across train/validation, and prior public-test exposure limit generalization claims. Extra training is real, but it does not fix missing vocabulary. The student must understand and explain the work personally; AI-generated explanations cannot substitute for that. The course-portal submission remains the student's action, and this checklist does not guarantee a grade or an instructor's academic-integrity determination.

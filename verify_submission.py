@@ -11,7 +11,7 @@ import torch
 from run_evals import load_model, load_suite, model_hash, reject_eval_leakage
 
 ROOT = Path(__file__).resolve().parent
-RUNS = ('starter', 'expanded', 'expanded_6000')
+RUNS = ('source_starter', 'source_expanded', 'source_expanded_6000')
 PINNED = {
     'run_evals.py': 'da87f28d128344807512e2bac1cfc662b37ac2c7e4a32b84c09f1950e92d67a0',
     'chat.py': '6152c8b7780f3b46fef5de38461adfc4b1a55df70ed106ca73ec5e9aded86d25',
@@ -29,9 +29,13 @@ def check(condition, description):
         raise AssertionError(description)
 
 
-def audit():
+def audit(output_path=None):
     for file, expected in PINNED.items():
         check(hashlib.sha256((ROOT / file).read_bytes()).hexdigest() == expected, 'Source changed: ' + file)
+    provenance = read(ROOT / 'source_materials/preparation_manifest.json')
+    for item in provenance['sources']:
+        check(hashlib.sha256((ROOT / 'source_materials' / item['original_file']).read_bytes()).hexdigest() == item['sha256'], 'Original textbook hash mismatch')
+        check(hashlib.sha256((ROOT / item['corpus_file']).read_bytes()).hexdigest() == item['corpus_sha256'], 'Prepared textbook corpus changed')
     suite = load_suite(ROOT / 'evals/language_evals.json')
     expected_ids = {case['id'] for case in suite['cases']}
     reports = []
@@ -63,7 +67,7 @@ def audit():
             check(summary['model_sha256'] == identity, run + '/' + stage + ' model identity')
             check(sum(row['score'] for row in rows) == summary['overall']['correct'], run + '/' + stage + ' total')
             check(vocabulary == read(folder / 'tokenization.json')['vocabulary'], run + ' vocabulary mismatch')
-            prior = ROOT / 'evidence' / ('rerun_' + run + '_' + stage) / 'eval_results.json'
+            prior = ROOT / 'source_evidence' / ('rerun_' + run + '_' + stage) / 'eval_results.json'
             check(read(prior) == rows, run + '/' + stage + ' saved rerun mismatch')
             stage_checks.append({'stage': stage, 'cases': len(rows), 'model_sha256': identity,
                                  'scores_and_saved_rerun_consistent': True})
@@ -82,14 +86,15 @@ def audit():
                         'panels_and_split_valid': True, 'prefix_separation_passed': True,
                         'inspection_matches_weights': True, 'archive_byte_identical': True})
     for file in ['corpus.txt', 'split.json', 'tokenization.json']:
-        check((ROOT / 'llm_runs/expanded' / file).read_bytes() == (ROOT / 'llm_runs/expanded_6000' / file).read_bytes(), 'follow-up changed ' + file)
+        check((ROOT / 'llm_runs/source_expanded' / file).read_bytes() == (ROOT / 'llm_runs/source_expanded_6000' / file).read_bytes(), 'follow-up changed ' + file)
     check(reports[1]['stages'][0]['model_sha256'] == reports[2]['stages'][0]['model_sha256'], 'follow-up changed initialization')
-    chat = read(ROOT / 'evidence/chat_transcript.json')
+    chat = read(ROOT / 'source_evidence/chat_transcript.json')
     check(len(chat['turns']) >= 3, 'Insufficient chat turns')
     check(chat['model_sha256'] == reports[1]['stages'][1]['model_sha256'], 'chat uses different model')
     for target in re.findall(r'\]\(([^)]+)\)', (ROOT / 'README.md').read_text()):
         if '://' not in target and not target.startswith('#'):
-            check((ROOT / target.split('#')[0]).exists(), 'Broken README link: ' + target)
+            linked = (ROOT / target.split('#')[0]).resolve()
+            check(linked.exists() or (output_path is not None and linked == output_path.resolve()), 'Broken README link: ' + target)
     return {'runs': reports, 'official_sources_unchanged': True,
             'followup_corpus_split_vocabulary_initial_weights_identical': True,
             'chat_matches_expanded_checkpoint': True, 'readme_file_links_valid': True,
@@ -100,7 +105,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, help='Optional JSON report path; default is read-only')
     args = parser.parse_args()
-    report = audit()
+    report = audit(args.output)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2) + '\n')

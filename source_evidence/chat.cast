@@ -1,0 +1,13 @@
+{"version": 2, "width": 110, "height": 30, "timestamp": 1790119931, "title": "Actual independently sourced expanded 3000-step nanoGPT terminal session"}
+[0.689328, "o", "number of parameters: 0.13M\r\n"]
+[0.690029, "o", "Tiny language model: short continuations, not a general assistant.\r\nEach prompt starts fresh. Context: 48 tokens. Type /quit to exit.\r\n"]
+[0.69004, "o", "You: "]
+[0.690056, "o", "the customer\r\n"]
+[0.693986, "o", "Model: <UNK> the product after checking the price .\r\nYou: "]
+[0.694002, "o", "a cat\r\n"]
+[0.703212, "o", "Model: is <UNK> in the <UNK> it in its <UNK> of a <UNK> ; <UNK> of <UNK> <UNK> <UNK> , a <UNK> ; as ,\r\nUnknown words: cat\r\n"]
+[0.703228, "o", "You: "]
+[0.703319, "o", "explain quantum teleportation\r\n"]
+[0.705002, "o", "Model: .\r\nUnknown words: explain, quantum, teleportation\r\nYou: "]
+[0.705025, "o", "/quit\r\n"]
+[0.70534, "o", "Saved transcript: source_evidence/chat_transcript.json\r\n"]

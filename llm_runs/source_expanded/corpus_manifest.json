@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "file": "antonyms_body.txt",
+      "bytes": 1312387,
+      "sha256": "1bb83f13e83e0969fd6334e5467338302b1e24e569cc042916da343768e9e5a2",
+      "warnings": [],
+      "characters": 1312387,
+      "passages": 24841,
+      "unique_passages": 18826,
+      "preview": "produced by jan - fabian humann , stephen blundell and the online distributed proofreading team at https : / / www . pgdp . net\nenglish synonyms and antonyms\na practical and invaluable guide to clear and precise diction for writers , speakers , students , business and professional men\nconnectives of"
+    },
+    {
+      "file": "grammar_body.txt",
+      "bytes": 331907,
+      "sha256": "037f52a7050f91f571ff986738b5e6c4ecaa9fd52a7fce3a779ea7bf8c9945b7",
+      "warnings": [],
+      "characters": 331907,
+      "passages": 8157,
+      "unique_passages": 5960,
+      "preview": "this ebook was produced by karl hagen , charles franks , and the online distributed proofreading team .\n* * transcriber's notes * *\nunderscores mark italics ; words enclosed in pluses represent boldface ; words enclosed in / slashes / represent underlined words .\nwords enclosed in ~ tildes ~ represe"
+    }
+  ],
+  "ignored": [],
+  "external_passages": 32998,
+  "mode": "classroom",
+  "base_passages": 6200,
+  "unique_passages": 29307,
+  "new_unique_passages": 24715,
+  "duplicates_removed": 9891,
+  "max_passage_tokens": 47,
+  "split_unit": "deduplicated passage, not source file"
+}

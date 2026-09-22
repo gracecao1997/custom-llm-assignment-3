@@ -1,0 +1,38 @@
+[
+  {
+    "run": "source_starter",
+    "stage": "untrained",
+    "cases": 48,
+    "saved_model_rerun_identical": true
+  },
+  {
+    "run": "source_starter",
+    "stage": "final",
+    "cases": 48,
+    "saved_model_rerun_identical": true
+  },
+  {
+    "run": "source_expanded",
+    "stage": "untrained",
+    "cases": 48,
+    "saved_model_rerun_identical": true
+  },
+  {
+    "run": "source_expanded",
+    "stage": "final",
+    "cases": 48,
+    "saved_model_rerun_identical": true
+  },
+  {
+    "run": "source_expanded_6000",
+    "stage": "untrained",
+    "cases": 48,
+    "saved_model_rerun_identical": true
+  },
+  {
+    "run": "source_expanded_6000",
+    "stage": "final",
+    "cases": 48,
+    "saved_model_rerun_identical": true
+  }
+]

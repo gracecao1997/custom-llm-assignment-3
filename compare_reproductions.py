@@ -12,7 +12,7 @@ def main():
     parser.add_argument('--output', type=Path, default=Path('results/my_fresh_training_comparison.json'))
     args = parser.parse_args()
     reports = []
-    for name in ['starter', 'expanded', 'expanded_6000']:
+    for name in ['source_starter', 'source_expanded', 'source_expanded_6000']:
         reference = ROOT / 'llm_runs' / name
         candidates = sorted(p for p in (ROOT / 'llm_runs').glob(name + '_20*') if p.is_dir())
         if not candidates:

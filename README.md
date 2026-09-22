@@ -1,163 +1,156 @@
-# Building and Evaluating a Tiny Language Model
+# Training a Tiny Language Model with Independent Teaching Sources
 
-I trained the supplied nanoGPT from scratch on the classroom corpus and then on the classroom corpus plus original grammar and opposites lessons. Both required experiments completed 3,000 updates. The trained models scored **20/48** and **27/48** on the unchanged public development benchmark. The added data increased scorable coverage from **24/48 to 29/48**, but generated text still exposed substantial failures. A completed 6,000-update follow-up also scored **27/48**.
+This revision trains the supplied nanoGPT on the classroom corpus and on classroom text plus two independently published books about **grammar** and **synonyms and antonyms**. The main trained models score **20/48** and **23/48** on the unchanged development suite. An executed 6,000-step source-corpus follow-up scores **24/48**. All three runs are saved, including failures and unrestricted continuations.
 
-This repository contains executed notebooks, all measured losses and samples, complete evaluations, saved weights, and a terminal interface that generates actual replies from the expanded 3,000-update model. These are narrow next-word selection results, not grades or evidence of general language understanding.
+The central finding is that adding authentic teaching material does not automatically add usable vocabulary. The expanded model reaches its 512-token limit, including three special tokens, and replaces approximately 27% of corpus tokens with UNK. It improves the covered starter-pattern tests but leaves every extension test unscorable. This is a measured limitation, not a claim that the added books taught general language understanding.
 
-## Start here
+## What changed after the classroom clarification
 
-- [Executed starter experiment](starter_custom_llm.ipynb)
-- [Executed expanded-corpus experiment](expanded_custom_llm.ipynb)
-- [Executed 6,000-step follow-up](expanded_6000_custom_llm.ipynb)
-- [Choices and predictions written before each run](PRETRAINING_PLAN.md)
-- [Actual terminal recording](evidence/chat.cast), [downloadable browser replay](evidence/chat_recording.html), [plain terminal output](evidence/chat_terminal.txt), and [three-turn transcript](evidence/chat_transcript.json)
-- [Saved-model rerun verification](evidence/rerun_verification.json)
-- [Fresh-training reproducibility](evidence/fresh_training_comparison.json), [executable submission audit](verify_submission.py), and [requirement-by-requirement evidence map](REQUIREMENTS_CHECK.md)
+The original written assignment asked students to read the complete public evaluation suite. The assistant did so before writing the earlier synthetic extension. The September 22 classroom discussion emphasized learning from teaching material rather than including quiz questions in training, and also cautioned against selecting material from literal test items. The earlier [synthetic experiment report](SYNTHETIC_EXPERIMENTS.md) and its results remain available for transparency.
 
-## Evidence map for the grading framework
+For this revision, the teaching text comes from complete independently authored books selected by subject. No custom teaching sentences were written from individual test items. The source plan and corpus were committed **before** training at commit `c924df9`. The prior exposure cannot be undone: this is still a **public development benchmark**, not blind evaluation or an untouched final test. Full result files are retained for assessment, but never used as teaching inputs.
 
-| Component | Weight | Main evidence |
-|---|---:|---|
-| Deliverable quality | 4 | Both executed notebooks above; [teaching sources and choices](#choices-and-teaching-sources); [actual learning explanation](#learning-evidence); full loss/sample/temperature evidence below |
-| Testing and evaluation | 3 | [Four required result sets](#all-four-required-evaluation-result-sets); [all groups and categories](#group-and-category-results); [separation](#separation-of-teaching-material-and-evaluations); [paired cases](evidence/paired_case_comparison.csv) |
-| Working result | 3 | Saved nanoGPT weights; [real chat and recording](#working-chat-interface-and-actual-interactions); [launch and reproduction commands](#reproduce-training-and-run-the-saved-model) |
+AI assistance was used to choose subject-level sources, implement deterministic text preparation, execute experiments, audit artifacts and draft the technical explanation. This report documents actual observations; it does not claim that AI-generated prose demonstrates the student's personal mastery.
 
-The [detailed requirement checklist](REQUIREMENTS_CHECK.md) points to every required artifact. These links organize evidence; they do not calculate or promise a course grade.
+## Main evidence
 
-## Choices and teaching sources
+- [Executed source baseline notebook](source_starter_custom_llm.ipynb)
+- [Executed independently sourced expansion notebook](source_expanded_custom_llm.ipynb)
+- [Executed 6,000-step follow-up notebook](source_expanded_6000_custom_llm.ipynb)
+- [Plan and predictions before training](SOURCE_REVISION_PLAN.md)
+- [Original book sources and hashes](source_materials/sources.json), [deterministic preparation code](prepare_source_corpus.py), and [preparation manifest](source_materials/preparation_manifest.json)
+- [Actual chat recording](source_evidence/chat.cast), [viewable GIF](source_evidence/chat_recording.gif), and [three-turn transcript](source_evidence/chat_transcript.json)
+- [Complete grading-evidence map](REQUIREMENTS_CHECK.md)
 
-I chose the supplied classroom corpus for the baseline because its small vocabulary and repeated contexts make learning inspectable. I chose 3,000 updates and an initial learning rate of 0.001 as the suggested meaningful CPU budget. One update uses a sampled batch of 32 passages; it is not a full pass through the corpus. The schedule warms up for 100 steps, then decays by a cosine schedule toward one tenth of the initial rate. Very large updates can destabilize optimization, while very small updates can leave the model close to its random initialization.
+## Corpus choices and permissions
 
-For the extension I chose **grammar** and **opposites**. Agreement and tense require patterns absent from the original domain sentences; contextual contrasts introduce new descriptive words and relationships. [grammar.txt](corpus/expanded/grammar.txt) adds 1,256 unique passages, with singular/plural agreement and present/past actions across people, animals and locations. [opposites.txt](corpus/expanded/opposites.txt) adds 882 unique passages about temperature, quantity, noise, speed, weight, timing, texture and other contrasting conditions. Examples include `a cat is quiet near the school .` and `today the first soup was hot but the other soup was cold .` These use different wording and situations from the fixed tests. Ordinary subject knowledge overlaps intentionally; test prefixes, choice lists, stories and outputs do not enter these files.
+The starter uses the unchanged classroom sentence generator without imported teaching files. It makes domain associations and repeated sentence patterns easy to inspect. The two extension themes are grammar and opposite/contrasting meanings, both named by the assignment at the category level.
 
-The 2,138 new teaching passages are original synthetic material prepared with AI assistance for this assignment and may be shared with this project. They are template-based teaching examples, not collected observations or independent natural-language documents. The baseline generator and assignment helpers come from the [course sample repository](https://github.com/pepealonso95/custom-llm), commit `9e04ddb6aacb8efcb790e70c62550ca55e0f2a75`, distributed for this assignment. The network is [Karpathy's pinned nanoGPT](https://github.com/karpathy/nanoGPT/blob/3adf61e154c3fe3fca428ad6bc3818b27a3b8291/model.py); its [MIT license](NANOGPT_LICENSE) is retained.
+| Source | Authors | Topic and rationale | Corpus input |
+|---|---|---|---|
+| [Graded Lessons in English, Gutenberg 7010](https://www.gutenberg.org/ebooks/7010) | Alonzo Reed and Brainerd Kellogg | Independent explanations, sentence examples and exercises involving sentence structure, parts of speech and inflection; intended to supply grammatical contexts absent from the domain-only starter | [grammar_body.txt](corpus/source_expanded/grammar_body.txt) |
+| [English Synonyms and Antonyms, Gutenberg 28900](https://www.gutenberg.org/ebooks/28900) | James Champlin Fernald | Independent word definitions, contrasts and examples; intended to add lexical relationships rather than repeat the starter's business/domain templates | [antonyms_body.txt](corpus/source_expanded/antonyms_body.txt) |
 
-Only UTF-8 TXT files were imported, so there was no PDF extraction or OCR to validate. I checked the file previews, unique-passage counts and warnings in both manifests; the expanded files produced no extraction warnings. No confidential or personal records are included.
+Both source pages identify these works as public domain in the USA. Complete downloaded editions, including their notices, are retained in [source_materials](source_materials). This project attributes the books and preserves their source notices. The original authors wrote the textbook prose; it is not presented as student-authored writing. The course-supplied network is [Karpathy's nanoGPT](https://github.com/karpathy/nanoGPT/blob/3adf61e154c3fe3fca428ad6bc3818b27a3b8291/model.py), with its [MIT license](NANOGPT_LICENSE). Classroom/helper source comes from [the course repository](https://github.com/pepealonso95/custom-llm), commit `9e04ddb6aacb8efcb790e70c62550ca55e0f2a75`.
 
-## Data and run identity
+The preprocessing uses each complete book body between the Gutenberg START and END markers. It removes italic underscores and the grammar edition's boldface plus markers, joins wrapped lines within paragraphs, and applies the original maximum 47-token passage splitter. It does not select entries by evaluation words, synthesize answers, manually extend the vocabulary, or revise text after seeing scores. Front matter, historical phrasing, diagram notation and the books' own exercises inside the body remain; these are source-text limitations.
 
-Deduplication precedes the seeded 90/10 passage split. The vocabulary is built exclusively from training passages, retaining at most 509 ordinary types plus UNK, BOS and EOS. Unknown-token rates below measure corpus tokens; benchmark coverage separately requires the whole prompt and all four choices to be known and fit the context.
+The unchanged reserved-prefix check is a removal-only guardrail. It removed **zero** book passages; the regular classroom generator still excludes 160 reserved passages before splitting. The checker sees prefixes to reject exact overlap, but its answer key and generated outputs do not supply text to the corpus. The two full source files and prepared corpus files are hash-checked by the audit.
 
-| Run | Unique passages | Train / validation | Added files | Vocabulary incl. special tokens | Train / validation UNK | Parameters | Completed updates | Training seconds |
+Source preparation retained 6,998 grammar chunks and 23,817 antonym chunks. The notebook re-applies its sentence/line splitter when importing the normalized files, yielding 8,157 and 24,841 imported passages respectively. The two-stage split explains the difference; it does not add teaching words. After deduplication and combination with the baseline, the extension contributes **24,715 new unique passages**, for **29,307 total**. Sources overlap and repeat passages, so per-file counts should not simply be added to get the final unique count. No PDF extraction or OCR was used. Both manifests report no file-reading warnings; source previews and hashes were inspected.
+
+## Settings and prediction
+
+Both main experiments use 3,000 updates and initial learning rate 0.001. These follow the assignment's CPU starting budget and keep the required comparison at the same update count. Batch size is 32; one step is one sampled-batch weight update, not a full pass through the corpus. The first 100 steps warm up, then cosine decay approaches one tenth of the initial rate. Too large a rate can destabilize updates; too small a rate can make little progress.
+
+Before execution, the prediction was lower within-run training/validation loss but uncertain benchmark gains: the full textbooks might overwhelm the 509 ordinary-token cap. That concern was realized. The planned follow-up changes only the budget to 6,000 fresh updates; cosine duration changes as a consequence. It is not a checkpoint-resume experiment.
+
+All runs use seed 42, CPU, two transformer blocks, four attention heads, 64-dimensional embeddings, context 48, zero dropout, and AdamW. The main comparison changes corpus content and therefore vocabulary, embedding shape, parameter count, split membership and random initialization realization. It is not a pure isolation of a single learned skill. Splits, panels and generation settings stay fixed **within each run**. The 6,000-step follow-up uses the exact expanded corpus, vocabulary, split and initial weights.
+
+| Run | Unique passages | Train / validation | Vocabulary incl. special tokens | Train UNK | Validation UNK | Parameters | Updates | Training seconds |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| starter | 4,592 | 4,132 / 460 | 0 | 136 | 0.00% / 0.00% | 111,872 | 3,000 | 8.602 |
-| expanded | 6,730 | 6,057 / 673 | 2 | 258 | 0.00% / 0.00% | 119,680 | 3,000 | 9.932 |
-| expanded_6000 | 6,730 | 6,057 / 673 | 2 | 258 | 0.00% / 0.00% | 119,680 | 6,000 | 19.086 |
+| source_starter | 4,592 | 4,132 / 460 | 136 | 0.00% | 0.00% | 111,872 | 3,000 | 13.013 |
+| source_expanded | 29,307 | 26,376 / 2,931 | 512 | 27.17% | 27.26% | 135,936 | 3,000 | 27.600 |
+| source_expanded_6000 | 29,307 | 26,376 / 2,931 | 512 | 27.17% | 27.26% | 135,936 | 6,000 | 50.114 |
 
-Hardware reported by the runtime: macOS 26.6, ARM64, CPU, four PyTorch threads; Python 3.9.6 and PyTorch 2.8.0. Elapsed values are measured training-loop time, excluding setup and evaluations. All reported training runs completed without interruption. An initial environment attempt stopped before training because NumPy was absent; NumPy was installed and the experiments were restarted from the top. The submitted requirements include that missing dependency.
+Runtime: macOS 26.6 ARM64, CPU with four PyTorch threads, Python 3.9.6 and PyTorch 2.8.0. Training seconds are measured loop time, excluding corpus preparation, setup and evaluations. All revised runs completed without interruption. An earlier environment setup error in the historical work required installing NumPy; it is included in requirements.txt.
 
-The main experiments hold seed 42, two transformer blocks, four heads, 64-dimensional embeddings, 48-token context, batch size 32, 3,000 updates, initial learning rate and sampling rules fixed. Splits and fixed loss panels are unchanged **within** a run. Adding passages changes the split membership and panels **between** the two main runs; the same split algorithm does not mean identical passages. A larger vocabulary also changes the embedding shape, parameter count and random initialization despite the same seed. This comparison therefore does not isolate the effect of a single new linguistic pattern. The follow-up uses exactly the expanded split and vocabulary.
+The 90/10 split is by deduplicated passage, not book or linguistic template. Passages from the same book appear in training and validation. The held-out loss therefore does not establish generalization to new authors, new sources or unseen language structures.
 
-Passages from one source file and closely related templates can be in both train and validation. The held-out loss tests prediction of other passages from these sources, not unseen-source or unseen-template generalization.
+**source_starter:** [config.json](llm_runs/source_starter/config.json) · [corpus_manifest.json](llm_runs/source_starter/corpus_manifest.json) · [vocabulary_report.json](llm_runs/source_starter/vocabulary_report.json) · [split.json](llm_runs/source_starter/split.json) · [training_summary.json](llm_runs/source_starter/training_summary.json) · [training.csv](llm_runs/source_starter/training.csv)
 
-**starter evidence:** [config.json](llm_runs/starter/config.json) · [corpus_manifest.json](llm_runs/starter/corpus_manifest.json) · [vocabulary_report.json](llm_runs/starter/vocabulary_report.json) · [split.json](llm_runs/starter/split.json) · [training_summary.json](llm_runs/starter/training_summary.json) · [training.csv](llm_runs/starter/training.csv) · [model.pt](llm_runs/starter/model.pt) · [model_untrained.pt](llm_runs/starter/model_untrained.pt)
+**source_expanded:** [config.json](llm_runs/source_expanded/config.json) · [corpus_manifest.json](llm_runs/source_expanded/corpus_manifest.json) · [vocabulary_report.json](llm_runs/source_expanded/vocabulary_report.json) · [split.json](llm_runs/source_expanded/split.json) · [training_summary.json](llm_runs/source_expanded/training_summary.json) · [training.csv](llm_runs/source_expanded/training.csv)
 
-**expanded evidence:** [config.json](llm_runs/expanded/config.json) · [corpus_manifest.json](llm_runs/expanded/corpus_manifest.json) · [vocabulary_report.json](llm_runs/expanded/vocabulary_report.json) · [split.json](llm_runs/expanded/split.json) · [training_summary.json](llm_runs/expanded/training_summary.json) · [training.csv](llm_runs/expanded/training.csv) · [model.pt](llm_runs/expanded/model.pt) · [model_untrained.pt](llm_runs/expanded/model_untrained.pt)
+**source_expanded_6000:** [config.json](llm_runs/source_expanded_6000/config.json) · [corpus_manifest.json](llm_runs/source_expanded_6000/corpus_manifest.json) · [vocabulary_report.json](llm_runs/source_expanded_6000/vocabulary_report.json) · [split.json](llm_runs/source_expanded_6000/split.json) · [training_summary.json](llm_runs/source_expanded_6000/training_summary.json) · [training.csv](llm_runs/source_expanded_6000/training.csv)
 
-**expanded_6000 evidence:** [config.json](llm_runs/expanded_6000/config.json) · [corpus_manifest.json](llm_runs/expanded_6000/corpus_manifest.json) · [vocabulary_report.json](llm_runs/expanded_6000/vocabulary_report.json) · [split.json](llm_runs/expanded_6000/split.json) · [training_summary.json](llm_runs/expanded_6000/training_summary.json) · [training.csv](llm_runs/expanded_6000/training.csv) · [model.pt](llm_runs/expanded_6000/model.pt) · [model_untrained.pt](llm_runs/expanded_6000/model_untrained.pt)
+## Four required evaluation result sets
 
-## All four required evaluation result sets
+The unchanged [suite](evals/language_evals.json) and [runner](run_evals.py) test all 48 cases before and after each main training run. Only the prefix is fed to the model. The key is used afterward by the scorer, not by training or the forward pass. A unique highest-probability correct choice among four words earns 1; wrong choices and ties earn 0. Cases with unknown prompt/choice tokens or excessive context are unscorable and receive zero in the all-case denominator. Scorable accuracy excludes those cases only in its separately labeled denominator.
 
-The scorer feeds only a test prefix to the model, then ranks four single-word answer probabilities. A unique highest-probability correct choice earns 1; wrong choices and ties earn 0. Out-of-vocabulary and over-context cases are unscorable and earn 0 in the all-case metric. Scorable accuracy divides by scorable cases only. The separately sampled unrestricted continuation is **not** the scored answer.
-
-| Experiment and stage | Correct / all | All-case success | Correct / scorable | Scorable accuracy | Coverage |
+| Run and stage | Correct / all | All-case success | Correct / scorable | Scorable accuracy | Coverage |
 |---|---:|---:|---:|---:|---:|
-| starter untrained | 9/48 | 18.75% | 9/24 | 37.50% | 24/48 (50.00%) |
-| starter final | 20/48 | 41.67% | 20/24 | 83.33% | 24/48 (50.00%) |
-| expanded untrained | 8/48 | 16.67% | 8/29 | 27.59% | 29/48 (60.42%) |
-| expanded final | 27/48 | 56.25% | 27/29 | 93.10% | 29/48 (60.42%) |
+| source_starter untrained | 9/48 | 18.75% | 9/24 | 37.50% | 24/48 (50.00%) |
+| source_starter final | 20/48 | 41.67% | 20/24 | 83.33% | 24/48 (50.00%) |
+| source_expanded untrained | 8/48 | 16.67% | 8/24 | 33.33% | 24/48 (50.00%) |
+| source_expanded final | 23/48 | 47.92% | 23/24 | 95.83% | 24/48 (50.00%) |
 
-**starter untrained:** [eval_results.json](llm_runs/starter/language_evals/untrained/eval_results.json) · [eval_results.csv](llm_runs/starter/language_evals/untrained/eval_results.csv) · [eval_summary.json](llm_runs/starter/language_evals/untrained/eval_summary.json) · [eval_cases.json](llm_runs/starter/language_evals/untrained/eval_cases.json)
+**source_starter untrained:** [eval_results.json](llm_runs/source_starter/language_evals/untrained/eval_results.json) · [eval_results.csv](llm_runs/source_starter/language_evals/untrained/eval_results.csv) · [eval_summary.json](llm_runs/source_starter/language_evals/untrained/eval_summary.json) · [eval_cases.json](llm_runs/source_starter/language_evals/untrained/eval_cases.json)
 
-**starter final:** [eval_results.json](llm_runs/starter/language_evals/final/eval_results.json) · [eval_results.csv](llm_runs/starter/language_evals/final/eval_results.csv) · [eval_summary.json](llm_runs/starter/language_evals/final/eval_summary.json) · [eval_cases.json](llm_runs/starter/language_evals/final/eval_cases.json)
+**source_starter final:** [eval_results.json](llm_runs/source_starter/language_evals/final/eval_results.json) · [eval_results.csv](llm_runs/source_starter/language_evals/final/eval_results.csv) · [eval_summary.json](llm_runs/source_starter/language_evals/final/eval_summary.json) · [eval_cases.json](llm_runs/source_starter/language_evals/final/eval_cases.json)
 
-**expanded untrained:** [eval_results.json](llm_runs/expanded/language_evals/untrained/eval_results.json) · [eval_results.csv](llm_runs/expanded/language_evals/untrained/eval_results.csv) · [eval_summary.json](llm_runs/expanded/language_evals/untrained/eval_summary.json) · [eval_cases.json](llm_runs/expanded/language_evals/untrained/eval_cases.json)
+**source_expanded untrained:** [eval_results.json](llm_runs/source_expanded/language_evals/untrained/eval_results.json) · [eval_results.csv](llm_runs/source_expanded/language_evals/untrained/eval_results.csv) · [eval_summary.json](llm_runs/source_expanded/language_evals/untrained/eval_summary.json) · [eval_cases.json](llm_runs/source_expanded/language_evals/untrained/eval_cases.json)
 
-**expanded final:** [eval_results.json](llm_runs/expanded/language_evals/final/eval_results.json) · [eval_results.csv](llm_runs/expanded/language_evals/final/eval_results.csv) · [eval_summary.json](llm_runs/expanded/language_evals/final/eval_summary.json) · [eval_cases.json](llm_runs/expanded/language_evals/final/eval_cases.json)
+**source_expanded final:** [eval_results.json](llm_runs/source_expanded/language_evals/final/eval_results.json) · [eval_results.csv](llm_runs/source_expanded/language_evals/final/eval_results.csv) · [eval_summary.json](llm_runs/source_expanded/language_evals/final/eval_summary.json) · [eval_cases.json](llm_runs/source_expanded/language_evals/final/eval_cases.json)
 
-### Group and category results
+### All groups and categories
 
-Each entry is **correct / total; scorable count**. No category or failure is dropped. A scorable count of zero means accuracy among scorable cases is undefined, not 0% or a lucky guess. Exact percentages and coverage for every category are in each linked summary.
+Entries are **correct / total; scorable count**. Exact rates for every group/category are in the summaries. Zero scorable cases means scorable accuracy is undefined, not a lucky guess or proof of a skill. No cases are dropped.
 
-| Group | Starter untrained | Starter trained | Expanded untrained | Expanded trained |
+| Group | Starter untrained | Starter trained | Books untrained | Books trained |
 |---|---:|---:|---:|---:|
-| extend_corpus | 0/24; 0 | 0/24; 0 | 2/24; 5 | 4/24; 5 |
+| extend_corpus | 0/24; 0 | 0/24; 0 | 0/24; 0 | 0/24; 0 |
 | starter_patterns | 6/16; 16 | 16/16; 16 | 5/16; 16 | 16/16; 16 |
-| starter_transfer | 3/8; 8 | 4/8; 8 | 1/8; 8 | 7/8; 8 |
+| starter_transfer | 3/8; 8 | 4/8; 8 | 3/8; 8 | 7/8; 8 |
 
-| Category | Starter untrained | Starter trained | Expanded untrained | Expanded trained |
+| Category | Starter untrained | Starter trained | Books untrained | Books trained |
 |---|---:|---:|---:|---:|
 | categories_and_analogies | 0/3; 0 | 0/3; 0 | 0/3; 0 | 0/3; 0 |
-| domain_context | 3/8; 8 | 8/8; 8 | 2/8; 8 | 8/8; 8 |
-| domain_place | 3/8; 8 | 8/8; 8 | 3/8; 8 | 8/8; 8 |
+| domain_context | 3/8; 8 | 8/8; 8 | 3/8; 8 | 8/8; 8 |
+| domain_place | 3/8; 8 | 8/8; 8 | 2/8; 8 | 8/8; 8 |
 | everyday_knowledge | 0/3; 0 | 0/3; 0 | 0/3; 0 | 0/3; 0 |
-| grammar | 0/3; 0 | 0/3; 0 | 2/3; 2 | 2/3; 2 |
+| grammar | 0/3; 0 | 0/3; 0 | 0/3; 0 | 0/3; 0 |
 | negation | 0/3; 0 | 0/3; 0 | 0/3; 0 | 0/3; 0 |
-| new_wording | 3/8; 8 | 4/8; 8 | 1/8; 8 | 7/8; 8 |
-| opposites | 0/3; 0 | 0/3; 0 | 0/3; 3 | 2/3; 3 |
+| new_wording | 3/8; 8 | 4/8; 8 | 3/8; 8 | 7/8; 8 |
+| opposites | 0/3; 0 | 0/3; 0 | 0/3; 0 | 0/3; 0 |
 | reference | 0/3; 0 | 0/3; 0 | 0/3; 0 | 0/3; 0 |
 | sequence | 0/3; 0 | 0/3; 0 | 0/3; 0 | 0/3; 0 |
 | spatial_relations | 0/3; 0 | 0/3; 0 | 0/3; 0 | 0/3; 0 |
 
-### What changed and what did not
+### Interpretation and failure analysis
 
-The starter improved from 9 to 20 correct without any coverage change. The expanded model improved from 8 to 27 correct at the same 29-case coverage before and after training. Between the trained experiments, the seven additional correct cases consist of **three net gains on the original 24 covered cases** and **four correct cases among five newly covered cases**. This is both changed vocabulary coverage and changed predictions; it is not seven independent demonstrations of reasoning improvement.
+The same 24 starter/transfer cases remain scorable in both main runs. Training raises the starter score from 9 to 20 and the book-expanded score from 8 to 23. Between trained models, domain cases remain 16/16; transfer cases rise from 4/8 to 7/8. Because the scorable set stays the same, this three-case net improvement is not a coverage gain. It is descriptive evidence from one seed, not a statistically established general improvement.
 
-A paired comparison keeps the denominator fixed and separates coverage gains:
+**Neither intended extension category becomes scorable.** Grammar and opposites teaching material was added, but the broad books consume the limited vocabulary. The most frequent 509 training types are retained; infrequent words are discarded even when they occur in the books. For example, `lang_25` is unscorable because required words are absent from the retained vocabulary, and `lang_28` is likewise blocked by multiple omitted words. These IDs identify saved failures without using their question text as new teaching material. The 3,000-step model also fails the fully scorable transfer case `lang_19`, so vocabulary is not the only limitation.
 
-| Case set | Cases | Starter trained | Expanded trained |
-|---|---:|---:|---:|
-| Scorable in both main experiments | 24 | 20/24 (83.33%) | 23/24 (95.83%) |
-| Newly scorable after extension | 5 | Unscorable | 4/5 (80.00%) |
-| Unscorable in both | 19 | 0 counted toward all-case success | 0 counted toward all-case success |
+A larger corpus increases data volume but also vocabulary diversity and the number of passages competing for the same 3,000-update budget. The experiment therefore shows why adding whole books may be ineffective for a tiny capped word tokenizer. It does not demonstrate successful acquisition of grammar or antonym reasoning. Training and held-out UNK rates around 27% and the unchanged 50% evaluation coverage substantiate this explanation. Exact OOV lists remain in the complete result files; no words were inserted directly into the vocabulary to repair tests.
 
-The common-set improvements are `lang_19`, `lang_22` and `lang_23`; none of those 24 common cases regressed in the main comparison. The [48-row paired CSV](evidence/paired_case_comparison.csv) and [computed summary](evidence/paired_case_summary.json) expose the exact denominators and transitions. Changing corpus, initialization shape and training batches still prevents attributing these gains solely to one linguistic skill. With one seed and three cases per extension category, these are descriptive observations, not a statistically established general improvement.
+The unrestricted continuation is sampled separately at temperature 0.8, per-case seed 2026 plus the case index, and a 24-token output limit. Its text is not the four-choice score. Actual continuations below come from the saved runner outputs; all remaining strings, including empty strings, remain in the full result sets.
 
-The two scorable grammar cases were already correct in the expanded random model and remained correct after training. Thus their final 2/2 accuracy alone does not establish that training improved grammar. Opposites improved from 0/3 to 2/3 at fixed within-run coverage. With only three cases, the result is fragile. Nineteen expanded cases remained unscorable. In `lang_25`, the ordinary word `one` was missing even though `bird` and all answer choices were known. I retained that failure rather than inserting an eval word directly into the vocabulary or dropping the case.
+| Run and stage | Case | Status | Choice score | Actual free continuation |
+|---|---|---|---:|---|
+| source_starter untrained | lang_01 | scored | 0 | `pear professor item doctor course harvest team physician journey checking buyer delivery our report the lecturer item offering and system <UNK> taste recommended payment` |
+| source_starter final | lang_01 | scored | 1 | `service in detail .` |
+| source_expanded untrained | lang_01 | scored | 0 | `it if pupils well speech ) 2 client water learning commonly rule him under result term men person etc tho most is exercise focused` |
+| source_expanded final | lang_01 | scored | 1 | `order of service .` |
+| source_expanded final | lang_19 | scored | 0 | `the <UNK> .` |
+| source_expanded final | lang_25 | out_of_vocabulary | 0 | `and they <UNK> ; <UNK> will be <UNK> of that <UNK> .` |
+| source_expanded final | lang_28 | out_of_vocabulary | 0 | `often of <UNK> or <UNK> , but may be <UNK> ; in the <UNK> from <UNK> , but <UNK> <UNK> has a <UNK> .` |
 
-For `lang_28`, all words were known but the model preferred `heavy` over `cold` after “the opposite of hot is.” Contextual contrast lessons did not reliably transfer to the benchmark wording. `lang_18` also remained wrong after the main extension. These are failures beyond vocabulary coverage.
+The source-based 3,000-step model is the chat model selected for the main comparison. The subsequent 6,000-step run is reported separately; no best-run replacement or removal of failures is used.
 
-The following are actual free continuations, including empty output. Complete before/after continuations for every case are in the result files.
+## Evaluation separation and source provenance
 
-| Run and stage | Case | Four-choice result | Actual unrestricted continuation |
-|---|---|---|---|
-| starter untrained | lang_01 | juice; score 0 | `pear professor item doctor course harvest team physician journey checking buyer delivery our report the lecturer item offering and system <UNK> taste recommended payment` |
-| starter final | lang_01 | service; score 1 | `service in detail .` |
-| starter final | lang_28 | unscorable; score 0 | `[empty]` |
-| expanded untrained | lang_26 | are; score 1 | `surgeon two train right bicycle buyer us open returned walked package clock meal birds door right noisy of software quiet walking morning orange light` |
-| expanded final | lang_22 | update; score 1 | `important apple .` |
-| expanded final | lang_26 | are; score 1 | `are happy outside the office .` |
-| expanded final | lang_27 | walked; score 1 | `mirror but the other bus was walking in the other bus .` |
-| expanded final | lang_28 | heavy; score 0 | `heavy and loud at the station .` |
-| expanded final | lang_29 | full; score 1 | `walks near the different platform .` |
+`CORPUS_FOLDER` is `corpus/starter` or `corpus/source_expanded`, never the repository root. Original books and notices live in `source_materials`; evaluation JSON lives in `evals`; output, transcript and report folders stay outside the selected corpus. None of the earlier AI-authored extension files are imported by the source revision.
 
-For example, expanded `lang_22` selects `update` correctly among the four choices but freely generates `important apple .`. Its correct choice score does not make the free response sensible. Sampling can choose a different token than the most probable member of a restricted choice set, and the unrestricted vocabulary contains many additional candidates.
+The fixed suite file SHA-256 remains `e8affcd72841e3ed7da5c0b6b116327fe9f69c9abd66a1180d1d88ceaa3e17f7`. The runner's parsed-JSON suite hash is `1d7c503f34d88260d0ac897bc36b8ba621cccc1950aef47e7121e69b2c1c9e1d`; these are different representations of the same suite. Model/helper files are unchanged and hash-checked. The book sources and prepared text have their own hashes and a reproducible source-to-corpus transformation.
 
-## Separation of teaching material and evaluations
+Exact-prefix matching is not a semantic leakage detector. Natural shared words, linguistic facts and ordinary textbook exercises are expected. Retaining source provenance and the complete processing rule makes the origin inspectable; it does not erase prior public-benchmark exposure or prove an untouched final test.
 
-The unchanged [48-case suite](evals/language_evals.json), [evaluation guide](evals/README.md), and [runner](run_evals.py) stay outside `corpus/`. Each notebook selects only `corpus/starter` or `corpus/expanded`, never the project root. The original generator excludes 160 passages containing reserved prefixes before deduplication, splitting, vocabulary construction or training. Imported and final passages pass normalized prefix rejection checks. Eval prompts, keys, generated outputs and chat transcripts are never training inputs. The key is used by the scorer after model inference, not by the forward pass or optimizer.
+[source_starter separation](llm_runs/source_starter/eval_separation.json) · [source_expanded separation](llm_runs/source_expanded/eval_separation.json) · [source_expanded_6000 separation](llm_runs/source_expanded_6000/eval_separation.json)
 
-Source checks preserve the official suite and helper hashes. The suite file SHA-256 is `e8affcd72841e3ed7da5c0b6b116327fe9f69c9abd66a1180d1d88ceaa3e17f7`; summaries use the runner's canonical parsed-JSON hash `1d7c503f34d88260d0ac897bc36b8ba621cccc1950aef47e7121e69b2c1c9e1d`. These are different representations of the same unchanged suite.
+## How the model learns from actual evidence
 
-I also checked the final corpus files and split intersections. Exact normalized checks cannot detect every semantic paraphrase or leaked answer list; the teaching-source review is therefore necessary. Because these public cases informed the choice of extension skills, this is a **development benchmark**, not an untouched final test. Claims about unseen generalization would require new tests that never guided data design.
+The **corpus** is the teaching text collection. Here a **token** is a lowercase word or punctuation mark. An **ID** selects a row in the vocabulary table; the ID is not a semantic quantity. A **vector** is a list of coordinates, and a token **embedding** is a learned 64-number vector. BOS begins a passage, EOS stops generation, and UNK replaces unavailable vocabulary words. Shifted input/target arrays in tokenization.json implement prediction of the next token from earlier tokens.
 
-[starter separation](llm_runs/starter/eval_separation.json) · [expanded separation](llm_runs/expanded/eval_separation.json) · [expanded_6000 separation](llm_runs/expanded_6000/eval_separation.json)
+The network contains token and position embeddings, attention projections, nonlinear feed-forward layers and other learned weights. Causal attention forms query/key scores, masks future positions, applies softmax, and combines value vectors from current/earlier positions. Its saved first-head attention matrix illustrates context mixing, not a universal explanation of the network. Logits from the final hidden state become vocabulary probabilities through softmax; generation samples one token and repeats until EOS or the output limit.
 
-## Learning evidence
+The loss is mean negative log probability assigned to observed next-token targets, ignoring padding. Backpropagation computes derivatives with respect to the weights. The code records a real embedding gradient, clips total gradient norm to 1, then AdamW updates parameters using adaptive scaling, momentum and weight decay. The raw saved gradient is before clipping; an AdamW update is not simply negative learning rate times the raw gradient.
 
-A corpus is the collection of teaching passages. Here a token is a lowercase word or punctuation mark. Its integer ID is an arbitrary index into a learned vector table, not a measure of meaning. BOS begins a passage, EOS ends it, and UNK represents words absent from training vocabulary. The tokenizer's shifted input and target arrays implement “given earlier tokens, predict the next token.”
+### source_starter inspection
 
-The neural network contains token and positional embeddings, attention projections, feed-forward weights and normalization parameters. A vector is a list of numerical coordinates; a token embedding is one such learned row with 64 coordinates. Causal attention uses the current and earlier positions: query/key dot products become attention weights through softmax, and weighted value vectors mix contextual information. Future positions are masked. The first-head matrices in the inspection files show actual attention for the saved prefix, but one head is not a complete explanation of the network.
+Word `customer` maps to ID **28**, row 28 of a **136 × 64** table. The ID remains an index while the coordinates learn. [tokenization.json](llm_runs/source_starter/tokenization.json) contains an actual passage and shifted token IDs; [inspection.json](llm_runs/source_starter/inspection.json) contains the full precision vectors, update and probability distributions.
 
-For an actual attention example, the expanded model's saved first head at `customer` in the prefix `the customer` assigns weights 0.4439 to BOS, 0.1817 to `the`, and 0.3744 to `customer`. These sum to approximately 1. The earlier rows give future positions zero weight. This illustrates causal context mixing, not a claim that these weights explain every model decision.
-
-The final hidden state is mapped to vocabulary logits through the tied embedding/output weights. Softmax turns those logits into next-token probabilities. Training minimizes mean negative log probability of the observed next tokens, ignoring padding. Backpropagation computes derivatives of this loss with respect to weights. Gradients are clipped to global norm 1 before AdamW uses momentum, adaptive scaling and weight decay to update parameters; the saved gradient is measured before clipping. It is not generally correct to equate the AdamW update with minus learning-rate times the raw gradient.
-
-### Starter token and parameter inspection
-
-In text such as `the customer`, token `customer` maps to ID **28**, row 28 of the **136 × 64** embedding table. The row is updated during training; IDs themselves do not learn. The exact vectors and probabilities are in [inspection.json](llm_runs/starter/inspection.json); token examples and shifted target IDs are in [tokenization.json](llm_runs/starter/tokenization.json).
-
-Before training — all 64 coordinates, displayed to eight decimal places:
+Before training — all 64 coordinates, rounded to eight decimals:
 
 ```text
 -0.05759192, -0.00480995, 0.04263189, 0.01933896, 0.01564311, -0.02882436, 0.02560906, 0.00005245
@@ -170,7 +163,7 @@ Before training — all 64 coordinates, displayed to eight decimal places:
 -0.03023791, 0.00643679, 0.05049081, 0.00749100, -0.01072286, 0.02473733, -0.01446874, 0.01323592
 ```
 
-After training — all 64 coordinates, displayed to eight decimal places:
+After training — all 64 coordinates, rounded to eight decimals:
 
 ```text
 0.03662532, -0.01821609, 0.13302672, 0.10595220, 0.06301495, 0.01891359, 0.15230250, 0.09290945
@@ -183,63 +176,65 @@ After training — all 64 coordinates, displayed to eight decimal places:
 0.09336104, 0.00261987, 0.03705694, 0.07563242, 0.11852193, 0.01437565, 0.09128829, -0.07461116
 ```
 
-For coordinate 0, the first real training update is **-0.057591915131 → -0.057601906359**, with raw gradient **0.000692586764**, effective first-step learning rate **0.00001000**, and observed delta **-0.000009991229**. This is a recorded model weight update, separate from the notebook's illustrative scalar derivative.
+First update of coordinate 0: **-0.057591915131 → -0.057601906359**, raw gradient **0.000692586764**, effective warmup rate **0.00001000**, observed delta **-0.000009991229**. This is the real network update, not just the scalar derivative illustration.
 
-For the same inspection prefix `the customer`, the probability of `reviewed` changes from **0.00711145** to **0.17824928**. The complete distributions remain available, so this example is not a substitute for the full evidence.
+For the inspection prefix `the customer`, probability of `reviewed` changes from **0.00711145** to **0.17824928**. It is a model prediction, not proof that the generated answer is true.
 
-Top five cosine neighbors in the full 64-dimensional space: before **bus (0.213), educator (0.203), helped (0.202), bank (0.201), risk (0.198)**; after **shopper (0.978), client (0.977), buyer (0.977), subscriber (0.971), consumer (0.970)**. Shared template contexts can move related words together, but do not prove human-like meaning. The [embedding viewer](embedding-viewer.html) can load [checkpoint.json](llm_runs/starter/checkpoint.json); its PCA projection loses dimensions, while cosine neighbors use all 64.
-### Expanded token and parameter inspection
+Full-vector cosine neighbors before: bus (0.213), educator (0.203), helped (0.202), bank (0.201), risk (0.198). After: shopper (0.978), client (0.977), buyer (0.977), subscriber (0.971), consumer (0.970). Shared contexts can create similarity, but this is not a human dictionary of meaning. The viewer uses a lossy PCA projection; cosine comparisons use all 64 dimensions. Load [checkpoint.json](llm_runs/source_starter/checkpoint.json) in [embedding-viewer.html](embedding-viewer.html).
+### source_expanded inspection
 
-In text such as `the customer`, token `customer` maps to ID **57**, row 57 of the **258 × 64** embedding table. The row is updated during training; IDs themselves do not learn. The exact vectors and probabilities are in [inspection.json](llm_runs/expanded/inspection.json); token examples and shifted target IDs are in [tokenization.json](llm_runs/expanded/tokenization.json).
+Word `customer` maps to ID **115**, row 115 of a **512 × 64** table. The ID remains an index while the coordinates learn. [tokenization.json](llm_runs/source_expanded/tokenization.json) contains an actual passage and shifted token IDs; [inspection.json](llm_runs/source_expanded/inspection.json) contains the full precision vectors, update and probability distributions.
 
-Before training — all 64 coordinates, displayed to eight decimal places:
-
-```text
-0.00221432, 0.02963505, 0.01400049, 0.00090525, -0.03207575, 0.00499068, 0.00043450, 0.04594752
-0.00207007, 0.06353401, 0.04974849, 0.01690442, 0.00171879, -0.01370460, -0.02144767, -0.00093662
--0.01027579, 0.02274715, -0.00029739, -0.00450633, 0.01709471, 0.02285157, 0.00051189, 0.01694643
-0.00540525, 0.02154553, 0.00785925, 0.01997704, -0.00602628, 0.00176055, 0.00846073, -0.01702104
-0.01508818, 0.03827388, -0.01952524, -0.02211251, 0.02433286, -0.01484618, -0.00513986, -0.00595958
-0.00060878, 0.00704737, -0.01131014, 0.03013116, -0.01473549, -0.00682624, -0.00576966, -0.03780041
-0.02048941, -0.00938060, 0.00243312, 0.02784380, -0.02335529, 0.00297620, -0.00095629, 0.02016601
-0.03908454, 0.00414516, 0.01939374, -0.01117684, -0.03155310, -0.01684498, -0.01339878, 0.02685277
-```
-
-After training — all 64 coordinates, displayed to eight decimal places:
+Before training — all 64 coordinates, rounded to eight decimals:
 
 ```text
--0.00061247, -0.13247804, -0.08169519, 0.00440346, -0.15137948, -0.09900060, -0.05385406, 0.08523620
--0.13766743, 0.16586207, -0.08087803, 0.09641515, -0.13483107, -0.20181532, -0.01634206, 0.09280232
--0.00615560, 0.10791548, 0.01421595, 0.06506120, 0.15539128, 0.12638657, 0.10265934, 0.09654400
--0.01750964, -0.14491074, -0.07714857, -0.01821277, 0.08845576, -0.08888390, 0.09911051, -0.08149642
-0.02352838, 0.13177590, 0.03394020, -0.11232964, -0.09633479, -0.11130434, -0.00194291, -0.02675383
-0.11765520, -0.04772163, 0.09959559, 0.20939569, -0.12338731, 0.19338180, 0.07571886, -0.02931006
-0.10072128, 0.13711795, 0.05355352, -0.00492026, -0.01707401, 0.12515476, 0.04522504, -0.08689537
--0.02105406, -0.02929139, 0.05793238, -0.11838571, -0.01179800, 0.14556444, -0.04494341, 0.01732177
+-0.01289048, -0.00112426, 0.01111397, -0.01921914, 0.01805574, -0.00295553, -0.01667393, -0.01402552
+-0.03325626, 0.04368388, 0.00337062, 0.05887846, -0.01349128, -0.02134749, -0.00064969, 0.02944676
+-0.01939894, 0.00828245, 0.02731836, -0.02722235, 0.00871754, -0.01180333, 0.01417540, 0.05519300
+-0.02379494, -0.03059601, -0.01351290, -0.01288646, -0.03714879, -0.01525916, 0.01388452, 0.01599167
+0.01030977, -0.01079112, -0.00009699, -0.01862323, 0.01763575, -0.00238881, 0.01185264, 0.03396032
+-0.00449775, 0.00677474, -0.00498336, -0.01261429, 0.00303682, -0.02810409, -0.02002282, 0.00653098
+-0.01906627, -0.02612402, -0.02332061, 0.02224589, -0.00822589, -0.00511698, -0.03225655, 0.02354597
+-0.03103489, -0.02494293, 0.01422724, -0.02508107, -0.03373867, -0.01668371, -0.01875169, 0.01738167
 ```
 
-For coordinate 0, the first real training update is **0.002214315115 → 0.002204315271**, with raw gradient **0.000769253471**, effective first-step learning rate **0.00001000**, and observed delta **-0.000009999843**. This is a recorded model weight update, separate from the notebook's illustrative scalar derivative.
+After training — all 64 coordinates, rounded to eight decimals:
 
-For the same inspection prefix `the customer`, the probability of `returned` changes from **0.00352203** to **0.19988938**. The complete distributions remain available, so this example is not a substitute for the full evidence.
+```text
+-0.10836834, -0.14590615, 0.00745096, -0.10813475, 0.00653572, -0.03838060, -0.20501490, 0.03112205
+0.10382409, 0.00442746, -0.07999310, 0.11599053, -0.10950269, 0.09662868, -0.06624954, -0.01128119
+0.16088724, -0.10437444, -0.08151703, -0.17501110, 0.15836324, -0.07261769, -0.02145714, 0.13894971
+0.23622346, -0.08933853, 0.01525367, -0.08525939, 0.00035176, -0.12328471, -0.10510342, 0.17430764
+0.02544928, -0.14953060, 0.07477849, -0.12189068, -0.05046105, 0.05009597, -0.07420538, 0.07361405
+-0.03905376, -0.04495563, 0.07816980, -0.01672847, 0.08787115, -0.13982020, 0.02651188, 0.22479023
+0.10706118, 0.12342249, 0.14552456, -0.18066512, -0.10177252, -0.18859789, 0.09051426, 0.17937161
+0.18965079, -0.20279402, 0.11077007, 0.11941115, -0.22308519, 0.02654248, 0.08697922, -0.07711199
+```
 
-Top five cosine neighbors in the full 64-dimensional space: before **birds (0.314), seat (0.305), sound (0.278), return (0.272), other (0.252)**; after **buyer (0.775), subscriber (0.774), shopper (0.767), client (0.765), consumer (0.738)**. Shared template contexts can move related words together, but do not prove human-like meaning. The [embedding viewer](embedding-viewer.html) can load [checkpoint.json](llm_runs/expanded/checkpoint.json); its PCA projection loses dimensions, while cosine neighbors use all 64.
-## All measured loss panels and saved sample stages
+First update of coordinate 0: **-0.012890481390 → -0.012880485505**, raw gradient **-0.000055456298**, effective warmup rate **0.00001000**, observed delta **0.000009995885**. This is the real network update, not just the scalar derivative illustration.
 
-Each curve uses the same **20 training and 20 validation passages within its run**, averaging over non-padding next-token targets. These are small fixed-panel estimates, not full-corpus losses. Only steps 0, halfway, and final are measured by these panels; intermediate printed batch losses are different measurements. No fixed-panel measurements are omitted below. Absolute losses across starter and expanded corpora should not be ranked because vocabulary and data distributions differ.
+For the inspection prefix `the customer`, probability of `<UNK>` changes from **0.00195191** to **0.88698047**. It is a model prediction, not proof that the generated answer is true.
 
-### Starter loss and sample timeline
+Full-vector cosine neighbors before: group (0.321), animal (0.311), fruit (0.307), write (0.307), security (0.294). After: client (0.987), buyer (0.985), subscriber (0.983), consumer (0.977), shopper (0.975). Shared contexts can create similarity, but this is not a human dictionary of meaning. The viewer uses a lossy PCA projection; cosine comparisons use all 64 dimensions. Load [checkpoint.json](llm_runs/source_expanded/checkpoint.json) in [embedding-viewer.html](embedding-viewer.html).
+## Complete loss measurements and sample timelines
 
-![starter fixed-panel loss](llm_runs/starter/training_curves.svg)
+Each run uses fixed panels of **20 training and 20 validation documents**. Values average all non-padding next-token targets in each panel. They are small panel estimates, not full-corpus measurements. All fixed-panel values are listed; intermediate printed batch losses are different measurements. The added books change the vocabulary, corpus and selected panels, so the two main runs' absolute losses should not be ranked as comparable benchmarks.
 
-| Step | Training loss | Validation loss |
+For every sample stage, the starting token is BOS, seed is 2026, temperature is 0.8, count is four, and output limit is 32 tokens. All saved strings are shown, including disordered and UNK-heavy outputs.
+
+### source_starter loss and samples
+
+![source_starter loss](llm_runs/source_starter/training_curves.svg)
+
+| Step | Training panel loss | Validation panel loss |
 |---:|---:|---:|
 | 0 | 4.926252365 | 4.927547932 |
 | 1500 | 0.682139337 | 0.718243241 |
 | 3000 | 0.678312540 | 0.706135690 |
 
-Exact values: [history.json](llm_runs/starter/history.json) and [training.csv](llm_runs/starter/training.csv).
+Full precision: [history.json](llm_runs/source_starter/history.json) and [training.csv](llm_runs/source_starter/training.csv).
 
-**Untrained, step 0** — [all saved samples](llm_runs/starter/samples/step_0000.txt)
+**Step 0** — [complete sample file](llm_runs/source_starter/samples/step_0000.txt)
 
 ```text
 1. pear professor bond doctor course harvest team physician journey checking buyer delivery traffic report the lecturer item offering and system <UNK> taste recommended mentioned bus question customer at mortgage nurse in instructor
@@ -248,7 +243,7 @@ Exact values: [history.json](llm_runs/starter/history.json) and [training.csv](l
 4. important hospital juice patient return recommended deposit tutor returned understand kitchen student design ordered hospital treatment important package traffic with yesterday investment important of mentioned store ordered mortgage nurse shopper the station
 ```
 
-**Halfway, step 1500** — [all saved samples](llm_runs/starter/samples/step_1500.txt)
+**Step 1500** — [complete sample file](llm_runs/source_starter/samples/step_1500.txt)
 
 ```text
 1. our school has a question about the new educator and lesson .
@@ -257,7 +252,7 @@ Exact values: [history.json](llm_runs/starter/history.json) and [training.csv](l
 4. our school has a question about the different instructor and course .
 ```
 
-**Final, step 3000** — [all saved samples](llm_runs/starter/samples/step_3000.txt)
+**Step 3000** — [complete sample file](llm_runs/source_starter/samples/step_3000.txt)
 
 ```text
 1. our school has a question about the new educator and lesson .
@@ -265,52 +260,52 @@ Exact values: [history.json](llm_runs/starter/history.json) and [training.csv](l
 3. the report about the nurse explains the health in detail .
 4. the consumer compared the offering after checking the price .
 ```
-### Expanded loss and sample timeline
+### source_expanded loss and samples
 
-![expanded fixed-panel loss](llm_runs/expanded/training_curves.svg)
+![source_expanded loss](llm_runs/source_expanded/training_curves.svg)
 
-| Step | Training loss | Validation loss |
+| Step | Training panel loss | Validation panel loss |
 |---:|---:|---:|
-| 0 | 5.548653603 | 5.563613415 |
-| 1500 | 0.757621408 | 0.779047430 |
-| 3000 | 0.742605925 | 0.766057014 |
+| 0 | 6.229711533 | 6.229967594 |
+| 1500 | 1.631640911 | 1.968184829 |
+| 3000 | 1.574097395 | 1.863475323 |
 
-Exact values: [history.json](llm_runs/expanded/history.json) and [training.csv](llm_runs/expanded/training.csv).
+Full precision: [history.json](llm_runs/source_expanded/history.json) and [training.csv](llm_runs/source_expanded/training.csv).
 
-**Untrained, step 0** — [all saved samples](llm_runs/expanded/samples/step_0000.txt)
-
-```text
-1. those brand support now taste happy students teacher program music nurse we hot noon door he
-2. service store song website inside i early important door consumer payment was cushion platform learned student deposit worker another educator a words last sound water now harvest design office during platform returned
-3. full after gate wide window on design system garden conditions last walks route evening important gate contrasting but friday shopper tea outside visitors learned risk surface team walked website mortgage delivery first
-4. bicycle surface detail orange <UNK> about taste door soup narrow order credit two understand health vehicle website at at bridge shelf sound selected window . describe return mentioned harvest bond office lecturer
-```
-
-**Halfway, step 1500** — [all saved samples](llm_runs/expanded/samples/step_1500.txt)
+**Step 0** — [complete sample file](llm_runs/source_expanded/samples/step_0000.txt)
 
 ```text
-1. those rabbits were happy near the river .
-2. today the store focused on order and the new shopper .
-3. the team discussed the doctor and the treatment at the hospital .
-4. today the kitchen focused on harvest and the local peach .
+1. it if pupils well speech station 2 client water learning commonly either him under result term men person etc tho most is exercise focused merely complement 3 desire own fine real purpose
+2. them use payment new make purpose could especially less well taste fruit discussion orange learned find toward group kind sound educator point does letter phrase we men learning do same from student
+3. following break more bad pain detail himself pronoun meaning return then physician discussed little pronoun heart one's have fancy case health money 2 body absolute sometimes but different battle us than delivery
+4. express come but add complete way it case being simple an rather payment matter above influence full who limited set the ( which no store in have always thought moral code more
 ```
 
-**Final, step 3000** — [all saved samples](llm_runs/expanded/samples/step_3000.txt)
+**Step 1500** — [complete sample file](llm_runs/source_expanded/samples/step_1500.txt)
 
 ```text
-1. those rabbits were happy in the kitchen .
-2. today the store focused on support and the important shopper .
-3. the important credit was mentioned in the interest report yesterday .
-4. the local website was mentioned in the update report yesterday .
+1. it is <UNK> a <UNK> <UNK> for a <UNK> .
+2. what is <UNK> ?
+3. <UNK> .
+4. <UNK> , <UNK> " <UNK> , <UNK>
 ```
 
-Both runs move from disordered token strings to recognizable teaching-sentence structures, and held-out panel loss falls along with training loss. The final validation loss remains above training loss. This supports learning within the narrow passage distribution, with a generalization gap; it does not establish broad understanding. All four samples at each stage use BOS, temperature 0.8, sampling seed 2026 and a 32-token limit, without changing the evaluation settings across training stages.
+**Step 3000** — [complete sample file](llm_runs/source_expanded/samples/step_3000.txt)
 
-## Temperature changes inference only
+```text
+1. it is <UNK> to <UNK> <UNK> , but he was <UNK> .
+2. <UNK> is the <UNK> <UNK> of <UNK> <UNK> <UNK> .
+3. <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> .
+4. <UNK> is <UNK> than <UNK> <UNK> .
+```
 
-The three temperatures use the same final weights, BOS starting token, seed 2026, four samples, and 32-token limit. Dividing logits by a lower temperature sharpens the distribution; higher temperature spreads mass more widely. Sampling changes the output, not the weights or vocabulary. A higher temperature need not change every sentence.
+Within each run both losses decrease, but the source-expanded validation loss remains noticeably above training loss. Template-like starter fluency and textbook-like punctuation patterns can appear while many content words remain UNK. This is consistent with learning parts of the narrow training distribution; it does not show reliable instruction following or broad generalization. A model can lower loss partly by learning frequent UNK transitions, so lower loss alone is especially insufficient here.
 
-**starter** — [temperature_comparison.json](llm_runs/starter/temperature_comparison.json)
+## Temperature comparison
+
+All temperatures use the same final weights, BOS, seed 2026 and 32-token limit. Lower temperature sharpens probabilities; higher temperature spreads them more widely. This changes inference, not the weights or retained vocabulary. It cannot reconstruct words mapped to UNK. A sampled sentence may remain identical at different temperatures under a fixed seed.
+
+**source_starter** — [temperature_comparison.json](llm_runs/source_starter/temperature_comparison.json)
 
 Temperature 0.3:
 
@@ -320,6 +315,7 @@ Temperature 0.3:
 3. the report about the nurse explains the health in detail .
 4. the local consumer was mentioned in the purchase report yesterday .
 ```
+
 Temperature 0.8:
 
 ```text
@@ -328,6 +324,7 @@ Temperature 0.8:
 3. the report about the nurse explains the health in detail .
 4. the consumer compared the offering after checking the price .
 ```
+
 Temperature 1.2:
 
 ```text
@@ -336,93 +333,92 @@ Temperature 1.2:
 3. the report about the nurse explains the health in detail .
 4. the consumer compared the offering after checking the price .
 ```
-**expanded** — [temperature_comparison.json](llm_runs/expanded/temperature_comparison.json)
+**source_expanded** — [temperature_comparison.json](llm_runs/source_expanded/temperature_comparison.json)
 
 Temperature 0.3:
 
 ```text
-1. those rabbits were cold near the river .
-2. today the store focused on support and the important shopper .
-3. the important credit was mentioned in the interest report yesterday .
-4. the local website was mentioned in the update report yesterday .
+1. <UNK> , <UNK> , <UNK>
+2. <UNK> , <UNK> , <UNK>
+3. <UNK> , <UNK> , <UNK>
+4. <UNK> , <UNK> , <UNK>
 ```
+
 Temperature 0.8:
 
 ```text
-1. those rabbits were happy in the kitchen .
-2. today the store focused on support and the important shopper .
-3. the important credit was mentioned in the interest report yesterday .
-4. the local website was mentioned in the update report yesterday .
+1. it is <UNK> to <UNK> <UNK> , but he was <UNK> .
+2. <UNK> is the <UNK> <UNK> of <UNK> <UNK> <UNK> .
+3. <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> , <UNK> .
+4. <UNK> is <UNK> than <UNK> <UNK> .
 ```
+
 Temperature 1.2:
 
 ```text
-1. those rabbits were happy in the kitchen .
-2. today the store focused on support and the new shopper .
-3. the important credit was mentioned in the interest report yesterday .
-4. the subscriber reviewed the package after checking the price .
+1. it of <UNK> a <UNK> <UNK> 2 ; he was <UNK> .
+2. <UNK> is the <UNK> person or <UNK> of <UNK> when he <UNK> tho is come to fine real purpose them ; one , make purpose could not less well taste <UNK> .
+3. this is <UNK> than i <UNK> .
+4. what does <UNK> to <UNK> or <UNK> ?
 ```
-In the starter, temperatures 0.8 and 1.2 produced the same four saved strings under this seed, while 0.3 changed the second and fourth strings. This small sample does not support claiming that higher temperature always visibly increases diversity.
+## Executed follow-up with 6000 updates
 
-## Completed follow-up on the training budget
+The prespecified follow-up uses the same source corpus, split, vocabulary, panels, initialization seed and starting learning rate, with a fresh 6,000-update training budget. The changed cosine duration is a consequence of that budget setting. The model is not resumed from the 3,000-step checkpoint.
 
-After the two required experiments, I predicted that increasing the expanded budget from 3,000 to 6,000 updates might slightly reduce panel loss, would not change vocabulary coverage, and might not increase eval success. I then **ran** that experiment from fresh initialization. Only `TRAINING_STEPS` changed; the cosine duration derives from this setting, so the learning-rate trajectory also changes. This is a total-budget comparison, not checkpoint continuation. Corpus bytes, vocabulary, split, panels, initial weight hash and seed match expanded 3,000.
+| Stage | Correct / all | All-case success | Scorable accuracy | Coverage |
+|---|---:|---:|---:|---:|
+| untrained | 8/48 | 16.67% | 33.33% | 24/48 |
+| final | 24/48 | 50.00% | 100.00% | 24/48 |
 
-| Follow-up stage | Correct / all | Scorable accuracy | Coverage |
-|---|---:|---:|---:|
-| untrained | 8/48 (16.67%) | 27.59% | 29/48 |
-| final | 27/48 (56.25%) | 93.10% | 29/48 |
-
-![Follow-up loss](llm_runs/expanded_6000/training_curves.svg)
+![Follow-up loss](llm_runs/source_expanded_6000/training_curves.svg)
 
 | Step | Training loss | Validation loss |
 |---:|---:|---:|
-| 0 | 5.548653603 | 5.563613415 |
-| 3000 | 0.750132561 | 0.772246540 |
-| 6000 | 0.731869221 | 0.763899207 |
+| 0 | 6.229711533 | 6.229967594 |
+| 3000 | 1.571052551 | 1.843068480 |
+| 6000 | 1.514449716 | 1.821400762 |
 
-Final validation loss changed from 0.766057 to 0.763899, while the total remained 27/48. `lang_18` changed from wrong to correct, but `lang_22` changed from correct to wrong. The unchanged total hides this exchange. Extra training did not resolve the missing `one` token or the `hot`/`cold` contrast failure, and the sampled tense continuation stayed nonsensical. I retain expanded 3,000 as the chat model selected for the main experiment; I do not claim that 6,000 is superior.
+The follow-up improves the score from 23 to 24 correct by fixing the remaining covered transfer case `lang_19`. Coverage remains **24/48** and all 24 extension cases remain unscorable. The apparently perfect **100% scorable accuracy** is only **50% all-case success**. It does not mean all tests were passed or that the target extension skills were acquired. Longer training reduced validation loss from 1.863475 to 1.821401 but did not remove the vocabulary bottleneck.
 
-Follow-up untrained: [eval_results.json](llm_runs/expanded_6000/language_evals/untrained/eval_results.json) · [eval_results.csv](llm_runs/expanded_6000/language_evals/untrained/eval_results.csv) · [eval_summary.json](llm_runs/expanded_6000/language_evals/untrained/eval_summary.json)
+Follow-up untrained: [eval_results.json](llm_runs/source_expanded_6000/language_evals/untrained/eval_results.json) · [eval_results.csv](llm_runs/source_expanded_6000/language_evals/untrained/eval_results.csv) · [eval_summary.json](llm_runs/source_expanded_6000/language_evals/untrained/eval_summary.json)
 
-Follow-up final: [eval_results.json](llm_runs/expanded_6000/language_evals/final/eval_results.json) · [eval_results.csv](llm_runs/expanded_6000/language_evals/final/eval_results.csv) · [eval_summary.json](llm_runs/expanded_6000/language_evals/final/eval_summary.json)
+Follow-up final: [eval_results.json](llm_runs/source_expanded_6000/language_evals/final/eval_results.json) · [eval_results.csv](llm_runs/source_expanded_6000/language_evals/final/eval_results.csv) · [eval_summary.json](llm_runs/source_expanded_6000/language_evals/final/eval_summary.json)
 
-Additional follow-up evidence: [history.json](llm_runs/expanded_6000/history.json) · [samples/step_0000.txt](llm_runs/expanded_6000/samples/step_0000.txt) · [samples/step_3000.txt](llm_runs/expanded_6000/samples/step_3000.txt) · [samples/step_6000.txt](llm_runs/expanded_6000/samples/step_6000.txt) · [inspection.json](llm_runs/expanded_6000/inspection.json) · [temperature_comparison.json](llm_runs/expanded_6000/temperature_comparison.json).
+Full follow-up inspections and samples: [history.json](llm_runs/source_expanded_6000/history.json) · [inspection.json](llm_runs/source_expanded_6000/inspection.json) · [tokenization.json](llm_runs/source_expanded_6000/tokenization.json) · [samples/step_0000.txt](llm_runs/source_expanded_6000/samples/step_0000.txt) · [samples/step_3000.txt](llm_runs/source_expanded_6000/samples/step_3000.txt) · [samples/step_6000.txt](llm_runs/source_expanded_6000/samples/step_6000.txt) · [temperature_comparison.json](llm_runs/source_expanded_6000/temperature_comparison.json).
 
-A further proposed experiment is to keep the 3,000-step budget fixed and add varied relation-focused teaching constructions using non-test contrasts and distinct contexts, then evaluate both this development suite and newly reserved probes created before selecting examples. It would test whether relational structure helps beyond more optimization. This additional data-design experiment is a **future proposal**, distinct from the completed 6,000-step follow-up; no results are claimed for it.
+A **future proposed experiment**, not a claimed result, is to change only the retained-vocabulary cap on this frozen source corpus and repeat both untrained/final evaluation. That would test the measured vocabulary bottleneck without writing examples from benchmark questions. The larger embedding table and different initialization shape would need to be disclosed, and absolute losses would no longer be directly comparable. New reserved probes chosen before tuning would be needed for an unseen-generalization claim. The 6,000-step budget experiment above is already executed, distinct from this proposal.
 
-## Working chat interface and actual interactions
+## Working chat with the saved source model
 
-The supplied [chat.py](chat.py) loads `llm_runs/expanded/model.pt` and the vocabulary saved inside it. It uses this trained nanoGPT, no other API and no canned answers. `checkpoint.json` is for the embedding viewer, not inference. Every prompt starts fresh; no conversation memory is carried forward. Unknown words map to UNK and are listed, and prompts longer than the 48-token context are truncated to the most recent tokens. Inference does not retrain the model or add chat messages to the corpus.
+The unmodified [chat.py](chat.py) loads `llm_runs/source_expanded/model.pt` and the vocabulary stored with it. It generates from the trained nanoGPT; it uses no other model API or canned responses. Every prompt starts fresh, unknown words are reported, and only the most recent 48 context tokens are used for long prompts. Chat never adds examples to the corpus or updates weights. The embedding-viewer checkpoint is not an inference model.
 
-The [transcript](evidence/chat_transcript.json) identifies the run and weight hash. The following three turns were captured directly from the terminal process by [record_chat.py](record_chat.py):
+Three actual terminal turns were captured by [record_source_chat.py](record_source_chat.py). The transcript includes the model identity and completed steps. All outputs are retained:
 
 ```text
-number of parameters: 0.12M
+number of parameters: 0.13M
 Tiny language model: short continuations, not a general assistant.
 Each prompt starts fresh. Context: 48 tokens. Type /quit to exit.
 You: the customer
-Model: returned the package after checking the price .
+Model: <UNK> the product after checking the price .
 You: a cat
-Model: is cold at the station .
+Model: is <UNK> in the <UNK> it in its <UNK> of a <UNK> ; <UNK> of <UNK> <UNK> <UNK> , a <UNK> ; as ,
+Unknown words: cat
 You: explain quantum teleportation
-Model: quiet in patient .
+Model: .
 Unknown words: explain, quantum, teleportation
 You: /quit
-Saved transcript: evidence/chat_transcript.json
+Saved transcript: source_evidence/chat_transcript.json
 ```
 
-Model weight hash: `750df05bb8574ebd5476a6aadcba0ac5016eb15d8e5bb7bef955d35895cb8218`. The third prompt is a concrete limitation: all three words are unknown, and `quiet in patient .` is not an answer. The useful classroom continuation in the first turn does not make this a general assistant.
+Model hash: `f9ae30b1b049d8cdc1c96a25e6073be827571ad4d6a6769e139f8bf076c57e06`. The first response retains a recognizable classroom structure but contains UNK; the second also reports an unknown prompt word; the third produces only punctuation for an unsupported request. These are genuine interface failures, not missing UI functionality, and are not represented as meaningful answers.
 
-![Readable-speed replay of actual captured terminal interactions](evidence/chat_recording.gif)
+![Readable replay of actual source-model terminal I/O](source_evidence/chat_recording.gif)
 
-This GIF renders the unchanged captured terminal text at a readable pace; it is a recording visualization, not a screenshot of a Terminal window. The [final frame](evidence/chat_recording_still.png) remains readable if animation is disabled. The original timestamps are preserved in the source recording, and [render_chat_recording.py](render_chat_recording.py) documents the conversion.
+This GIF renders the unchanged captured terminal I/O at a readable pace; it is not a screenshot of a Terminal window. [Original timestamped recording](source_evidence/chat.cast) · [JSON transcript](source_evidence/chat_transcript.json) · [plain terminal output](source_evidence/chat_terminal.txt) · [still frame](source_evidence/chat_recording_still.png). Replay the original with `asciinema play source_evidence/chat.cast` if installed. The [conversion source](render_source_chat_recording.py) requires Pillow only for rendering evidence, not training or chat.
 
-**Recording:** [chat.cast](evidence/chat.cast) is an actual timestamped asciicast v2 terminal recording. Download and open [chat_recording.html](evidence/chat_recording.html) locally for a self-contained replay, or use `asciinema play evidence/chat.cast` if asciinema is installed. The replay is a viewer of captured terminal I/O, not a separate chat implementation. GitHub displays HTML source rather than executing the player. The plain transcript remains readable directly on GitHub.
+## Reproduce and verify
 
-## Reproduce training and run the saved model
-
-Clone this repository or download its ZIP, then run these commands from the repository root:
+Clone or download this repository, then from its root:
 
 ```bash
 python3 -m venv .venv
@@ -432,56 +428,45 @@ python -m ipykernel install --prefix .venv --name custom-llm --display-name "Cus
 jupyter notebook
 ```
 
-Select the Custom LLM kernel and open `starter_custom_llm.ipynb`, then `expanded_custom_llm.ipynb`. Their executed outputs can be inspected without rerunning. **Run All now works directly on a downloaded submission:** if the original result folder exists, section 3 automatically selects a new timestamped folder. No path editing or deletion of submitted evidence is needed. Run all cells in order. Corpus paths already point to the correct separate folders. Follow-up training is optional; open `expanded_6000_custom_llm.ipynb` to reproduce it similarly. The notebook installs no pretrained weights and requires no API key.
+Open the two main source notebooks linked above and select the Custom LLM kernel. Executed outputs are already visible. Run All automatically uses a new timestamped result directory when the submitted one exists, preserving original evidence. All inputs are included; no API key, pretrained weights or extra corpus download is required. The source preparation can be independently rerun with `python prepare_source_corpus.py`; source hashes must match before processing.
 
-For a complete execution without opening a notebook UI, run the [reproduction helper](reproduce.py):
+For notebook execution without opening the UI:
 
 ```bash
 python reproduce.py --experiment all --kernel custom-llm
-python compare_reproductions.py
 ```
 
-Use `--experiment starter` or `--experiment expanded` for one main experiment. Fresh executed notebooks are saved as `reproduced_*.ipynb` at the repository root, keeping relative artifact links and corpus paths valid; new run folders receive timestamps. The submitted notebooks and original evidence are preserved. Environments with a working default Python kernel can omit `--kernel custom-llm`.
+This executes source_starter, source_expanded and source_expanded_6000, writing new `reproduced_*.ipynb` files at the repository root and new run folders. A working default Python kernel can be used by omitting the kernel argument. Exact numerical reproducibility can depend on hardware and dependency versions; [the recorded environment](evidence/execution_environment.txt) identifies the original training setup.
 
-I executed all three full notebooks again after fixing the directory collision. The fresh runs reproduced the **initial and final weight hashes, all measured losses, inspections, temperatures and all six 48-case result sets exactly**. This is a fresh-training check, in addition to the saved-model inference reruns. [Fresh training report](evidence/fresh_training_reproduction.json) · [artifact and weight comparison](evidence/fresh_training_comparison.json) · [comparison source](compare_reproductions.py). Exact equality was verified in the same CPU environment; dependency versions or hardware changes may introduce numerical differences. The [recorded package versions](evidence/execution_environment.txt) identify that environment.
+Launch the saved source model:
 
-To check the submitted artifacts without training or altering them:
+```bash
+python chat.py --model llm_runs/source_expanded/model.pt --transcript my_chat.json
+```
+
+Type prompts at `You:` and `/quit` to finish. Use a fresh transcript filename each time. Both model.pt and model_untrained.pt are included in every run folder. They store inference weights, not optimizer state for exact training resume.
+
+Rerun the four required evaluation sets from saved checkpoints:
+
+```bash
+python run_evals.py --model llm_runs/source_starter/model_untrained.pt --stage untrained --output results/source_starter_untrained
+python run_evals.py --model llm_runs/source_starter/model.pt --stage final --output results/source_starter_final
+python run_evals.py --model llm_runs/source_expanded/model_untrained.pt --stage untrained --output results/source_expanded_untrained
+python run_evals.py --model llm_runs/source_expanded/model.pt --stage final --output results/source_expanded_final
+```
+
+The same runner loads the 6,000-step checkpoint. All six revised saved-model reruns were executed and produced exactly matching per-case records, including free continuations: [verification report](source_evidence/rerun_verification.json). Use new output folders to keep earlier evidence.
 
 ```bash
 python verify_submission.py
 python -m unittest test_language_evals test_corpus
 ```
 
-The [audit source](verify_submission.py) checks all six model identities, 288 result records, complete notebook outputs, split/panel membership, exact-prefix separation, initial/final embeddings, ZIP contents, chat identity and README file links. [Saved audit report](evidence/detailed_audit.json) · [14-test execution log](evidence/unit_tests.txt). Prefix checks have semantic limits, as discussed above.
+[The audit](verify_submission.py) checks source hashes, all notebook execution outputs, fixed suites, 288 case/stage records, model identities, vector/weight consistency, disjoint train/validation membership, fixed panels, corpus prefix separation, ZIP contents, chat identity and README file links. [Audit report](source_evidence/detailed_audit.json). The original 14 corpus/evaluation tests passed; their log is [retained](evidence/unit_tests.txt). Their intentionally invalid-PDF fixtures do not mean these TXT-only runs had extraction errors.
 
-Launch the actual saved-model terminal chat:
+## Complete results and historical work
 
-```bash
-python chat.py --model llm_runs/expanded/model.pt --transcript my_chat.json
-```
+[Revised starter ZIP](llm_runs/source_starter.zip) · [Independent-source expansion ZIP](llm_runs/source_expanded.zip) · [Source follow-up ZIP](llm_runs/source_expanded_6000.zip)
 
-Enter a prompt at each `You:` prompt and `/quit` to finish. Choose a new transcript filename each time; the script preserves earlier sessions rather than overwriting them. All required weights are included in this repository; no private download is needed.
+The ZIPs contain the complete run artifacts. The executed notebooks are separate files at the top of this report. [Earlier synthetic experiments](SYNTHETIC_EXPERIMENTS.md) remain clearly labeled historical; their higher score is not substituted for the source-based result. All source files, selected corpus paths and experiment identities remain inspectable.
 
-Rerun all four required evaluation stages from saved weights:
-
-```bash
-python run_evals.py --model llm_runs/starter/model_untrained.pt --stage untrained --output results/starter_untrained
-python run_evals.py --model llm_runs/starter/model.pt --stage final --output results/starter_final
-python run_evals.py --model llm_runs/expanded/model_untrained.pt --stage untrained --output results/expanded_untrained
-python run_evals.py --model llm_runs/expanded/model.pt --stage final --output results/expanded_final
-```
-
-The same command with `llm_runs/expanded_6000/model.pt` reruns the follow-up. I tested all six saved checkpoints: every result row, including each free continuation, exactly matched the corresponding notebook result. See [verification](evidence/rerun_verification.json) and the `evidence/rerun_*` directories. The course's 14 corpus/evaluation tests also passed (`python -m unittest test_language_evals test_corpus`), including separation and inference checks. Expected invalid-PDF diagnostics in the tests are fixture checks; these experiments imported no PDFs.
-
-The original notebook structure, network and scoring code are retained. Changes are experiment settings and predictions, collision-safe evidence paths, the additional dependency, and documentation, recording, reproduction and audit helpers. The network, four-choice scoring and fixed test suite remain unchanged. Source code and all model outputs are available for inspection. Model files contain inference weights, not exact optimizer-state training-resume checkpoints.
-
-## Complete archives
-
-[Starter results ZIP](llm_runs/starter.zip) · [Expanded results ZIP](llm_runs/expanded.zip) · [Follow-up results ZIP](llm_runs/expanded_6000.zip)
-
-The ZIPs preserve complete run evidence; executed notebooks are separate files linked above. AI assistance was used to prepare teaching material, execute and check experiments, and organize this explanation. Numerical results and quoted model outputs are from the saved runs.
-
-
-Structural checks are saved in [submission_audit.json](evidence/submission_audit.json). The unmodified `custom_llm.py` is the upstream source reference used by the corpus tests; run the configured experiment notebooks linked above to reproduce the submitted settings.
-
-After execution, notebook artifact-link paths were normalized from local absolute paths to repository-relative links for GitHub viewing. The final interpretation cells now also explain each run in place; the path-allocation code was improved to preserve old results on Run All. No numerical, sample, or evaluation output was changed. Public access was checked without authentication; the notebook preview also renders the saved loss plot and inspections.
