@@ -1,0 +1,66 @@
+{
+  "command": "python reproduce.py --experiment all",
+  "results": [
+    {
+      "experiment": "starter",
+      "original_run": "llm_runs/starter",
+      "fresh_run": "llm_runs/starter_20260921T192221_035649Z",
+      "fresh_completed_steps": 3000,
+      "fresh_elapsed_seconds": 10.604409334,
+      "identical_artifacts": {
+        "corpus.txt": true,
+        "split.json": true,
+        "tokenization.json": true,
+        "history.json": true,
+        "inspection.json": true,
+        "temperature_comparison.json": true
+      },
+      "weight_hashes": {
+        "untrained": "73fcac5a3daaed81be800a450cc50c3cd932db3b3b1cb79b27401124eeb1f16b",
+        "final": "6e4eb60624f6b8874b928ef7720b84ce192d57c1ca1f4e4fed4c3628654d5026"
+      },
+      "both_48_case_results_identical": true
+    },
+    {
+      "experiment": "expanded",
+      "original_run": "llm_runs/expanded",
+      "fresh_run": "llm_runs/expanded_20260921T192235_474434Z",
+      "fresh_completed_steps": 3000,
+      "fresh_elapsed_seconds": 11.903860625,
+      "identical_artifacts": {
+        "corpus.txt": true,
+        "split.json": true,
+        "tokenization.json": true,
+        "history.json": true,
+        "inspection.json": true,
+        "temperature_comparison.json": true
+      },
+      "weight_hashes": {
+        "untrained": "c7bcced7e6542e2fbebb09b64b0f7d4f996c5d474e8f0e49366fc4efc9558225",
+        "final": "750df05bb8574ebd5476a6aadcba0ac5016eb15d8e5bb7bef955d35895cb8218"
+      },
+      "both_48_case_results_identical": true
+    },
+    {
+      "experiment": "expanded_6000",
+      "original_run": "llm_runs/expanded_6000",
+      "fresh_run": "llm_runs/expanded_6000_20260921T192251_392493Z",
+      "fresh_completed_steps": 6000,
+      "fresh_elapsed_seconds": 23.038115708,
+      "identical_artifacts": {
+        "corpus.txt": true,
+        "split.json": true,
+        "tokenization.json": true,
+        "history.json": true,
+        "inspection.json": true,
+        "temperature_comparison.json": true
+      },
+      "weight_hashes": {
+        "untrained": "c7bcced7e6542e2fbebb09b64b0f7d4f996c5d474e8f0e49366fc4efc9558225",
+        "final": "6206bda0ca04642423d4df7f261ae9156e5187320ba31395f77519e2ba36c5da"
+      },
+      "both_48_case_results_identical": true
+    }
+  ],
+  "note": "Fresh run folders are locally retained and ignored by Git to avoid duplicating the submission; the command recreates them. The validation run saved notebooks under results/reproduction_20260921T192218_687727Z; the launcher now saves reproduced notebooks at repository root so their relative artifact links and corpus paths also work when opened directly."
+}

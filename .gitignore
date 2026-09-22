@@ -4,3 +4,6 @@ __pycache__/
 .DS_Store
 /results/
 /my_chat.json
+/llm_runs/*_20*/
+/llm_runs/*_20*.zip
+/reproduced_*.ipynb

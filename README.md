@@ -12,6 +12,17 @@ This repository contains executed notebooks, all measured losses and samples, co
 - [Choices and predictions written before each run](PRETRAINING_PLAN.md)
 - [Actual terminal recording](evidence/chat.cast), [downloadable browser replay](evidence/chat_recording.html), [plain terminal output](evidence/chat_terminal.txt), and [three-turn transcript](evidence/chat_transcript.json)
 - [Saved-model rerun verification](evidence/rerun_verification.json)
+- [Fresh-training reproducibility](evidence/fresh_training_comparison.json), [executable submission audit](verify_submission.py), and [requirement-by-requirement evidence map](REQUIREMENTS_CHECK.md)
+
+## Evidence map for the grading framework
+
+| Component | Weight | Main evidence |
+|---|---:|---|
+| Deliverable quality | 4 | Both executed notebooks above; [teaching sources and choices](#choices-and-teaching-sources); [actual learning explanation](#learning-evidence); full loss/sample/temperature evidence below |
+| Testing and evaluation | 3 | [Four required result sets](#all-four-required-evaluation-result-sets); [all groups and categories](#group-and-category-results); [separation](#separation-of-teaching-material-and-evaluations); [paired cases](evidence/paired_case_comparison.csv) |
+| Working result | 3 | Saved nanoGPT weights; [real chat and recording](#working-chat-interface-and-actual-interactions); [launch and reproduction commands](#reproduce-training-and-run-the-saved-model) |
+
+The [detailed requirement checklist](REQUIREMENTS_CHECK.md) points to every required artifact. These links organize evidence; they do not calculate or promise a course grade.
 
 ## Choices and teaching sources
 
@@ -92,6 +103,16 @@ Each entry is **correct / total; scorable count**. No category or failure is dro
 
 The starter improved from 9 to 20 correct without any coverage change. The expanded model improved from 8 to 27 correct at the same 29-case coverage before and after training. Between the trained experiments, the seven additional correct cases consist of **three net gains on the original 24 covered cases** and **four correct cases among five newly covered cases**. This is both changed vocabulary coverage and changed predictions; it is not seven independent demonstrations of reasoning improvement.
 
+A paired comparison keeps the denominator fixed and separates coverage gains:
+
+| Case set | Cases | Starter trained | Expanded trained |
+|---|---:|---:|---:|
+| Scorable in both main experiments | 24 | 20/24 (83.33%) | 23/24 (95.83%) |
+| Newly scorable after extension | 5 | Unscorable | 4/5 (80.00%) |
+| Unscorable in both | 19 | 0 counted toward all-case success | 0 counted toward all-case success |
+
+The common-set improvements are `lang_19`, `lang_22` and `lang_23`; none of those 24 common cases regressed in the main comparison. The [48-row paired CSV](evidence/paired_case_comparison.csv) and [computed summary](evidence/paired_case_summary.json) expose the exact denominators and transitions. Changing corpus, initialization shape and training batches still prevents attributing these gains solely to one linguistic skill. With one seed and three cases per extension category, these are descriptive observations, not a statistically established general improvement.
+
 The two scorable grammar cases were already correct in the expanded random model and remained correct after training. Thus their final 2/2 accuracy alone does not establish that training improved grammar. Opposites improved from 0/3 to 2/3 at fixed within-run coverage. With only three cases, the result is fragile. Nineteen expanded cases remained unscorable. In `lang_25`, the ordinary word `one` was missing even though `bird` and all answer choices were known. I retained that failure rather than inserting an eval word directly into the vocabulary or dropping the case.
 
 For `lang_28`, all words were known but the model preferred `heavy` over `cold` after “the opposite of hot is.” Contextual contrast lessons did not reliably transfer to the benchmark wording. `lang_18` also remained wrong after the main extension. These are failures beyond vocabulary coverage.
@@ -127,6 +148,8 @@ I also checked the final corpus files and split intersections. Exact normalized 
 A corpus is the collection of teaching passages. Here a token is a lowercase word or punctuation mark. Its integer ID is an arbitrary index into a learned vector table, not a measure of meaning. BOS begins a passage, EOS ends it, and UNK represents words absent from training vocabulary. The tokenizer's shifted input and target arrays implement “given earlier tokens, predict the next token.”
 
 The neural network contains token and positional embeddings, attention projections, feed-forward weights and normalization parameters. A vector is a list of numerical coordinates; a token embedding is one such learned row with 64 coordinates. Causal attention uses the current and earlier positions: query/key dot products become attention weights through softmax, and weighted value vectors mix contextual information. Future positions are masked. The first-head matrices in the inspection files show actual attention for the saved prefix, but one head is not a complete explanation of the network.
+
+For an actual attention example, the expanded model's saved first head at `customer` in the prefix `the customer` assigns weights 0.4439 to BOS, 0.1817 to `the`, and 0.3744 to `customer`. These sum to approximately 1. The earlier rows give future positions zero weight. This illustrates causal context mixing, not a claim that these weights explain every model decision.
 
 The final hidden state is mapped to vocabulary logits through the tied embedding/output weights. Softmax turns those logits into next-token probabilities. Training minimizes mean negative log probability of the observed next tokens, ignoring padding. Backpropagation computes derivatives of this loss with respect to weights. Gradients are clipped to global norm 1 before AdamW uses momentum, adaptive scaling and weight decay to update parameters; the saved gradient is measured before clipping. It is not generally correct to equate the AdamW update with minus learning-rate times the raw gradient.
 
@@ -391,6 +414,10 @@ Saved transcript: evidence/chat_transcript.json
 
 Model weight hash: `750df05bb8574ebd5476a6aadcba0ac5016eb15d8e5bb7bef955d35895cb8218`. The third prompt is a concrete limitation: all three words are unknown, and `quiet in patient .` is not an answer. The useful classroom continuation in the first turn does not make this a general assistant.
 
+![Readable-speed replay of actual captured terminal interactions](evidence/chat_recording.gif)
+
+This GIF renders the unchanged captured terminal text at a readable pace; it is a recording visualization, not a screenshot of a Terminal window. The [final frame](evidence/chat_recording_still.png) remains readable if animation is disabled. The original timestamps are preserved in the source recording, and [render_chat_recording.py](render_chat_recording.py) documents the conversion.
+
 **Recording:** [chat.cast](evidence/chat.cast) is an actual timestamped asciicast v2 terminal recording. Download and open [chat_recording.html](evidence/chat_recording.html) locally for a self-contained replay, or use `asciinema play evidence/chat.cast` if asciinema is installed. The replay is a viewer of captured terminal I/O, not a separate chat implementation. GitHub displays HTML source rather than executing the player. The plain transcript remains readable directly on GitHub.
 
 ## Reproduce training and run the saved model
@@ -405,7 +432,27 @@ python -m ipykernel install --prefix .venv --name custom-llm --display-name "Cus
 jupyter notebook
 ```
 
-Select the Custom LLM kernel and open `starter_custom_llm.ipynb`, then `expanded_custom_llm.ipynb`. Their executed outputs can be inspected without rerunning. For a fresh run, change `run_dir` in section 3 to an unused path, such as `Path("llm_runs/starter_new")`; the submitted stable run folders deliberately refuse to overwrite existing evidence. Run all cells in order. Corpus paths already point to the correct separate folders. Follow-up training is optional; open `expanded_6000_custom_llm.ipynb` to reproduce it similarly. The notebook installs no pretrained weights and requires no API key.
+Select the Custom LLM kernel and open `starter_custom_llm.ipynb`, then `expanded_custom_llm.ipynb`. Their executed outputs can be inspected without rerunning. **Run All now works directly on a downloaded submission:** if the original result folder exists, section 3 automatically selects a new timestamped folder. No path editing or deletion of submitted evidence is needed. Run all cells in order. Corpus paths already point to the correct separate folders. Follow-up training is optional; open `expanded_6000_custom_llm.ipynb` to reproduce it similarly. The notebook installs no pretrained weights and requires no API key.
+
+For a complete execution without opening a notebook UI, run the [reproduction helper](reproduce.py):
+
+```bash
+python reproduce.py --experiment all --kernel custom-llm
+python compare_reproductions.py
+```
+
+Use `--experiment starter` or `--experiment expanded` for one main experiment. Fresh executed notebooks are saved as `reproduced_*.ipynb` at the repository root, keeping relative artifact links and corpus paths valid; new run folders receive timestamps. The submitted notebooks and original evidence are preserved. Environments with a working default Python kernel can omit `--kernel custom-llm`.
+
+I executed all three full notebooks again after fixing the directory collision. The fresh runs reproduced the **initial and final weight hashes, all measured losses, inspections, temperatures and all six 48-case result sets exactly**. This is a fresh-training check, in addition to the saved-model inference reruns. [Fresh training report](evidence/fresh_training_reproduction.json) · [artifact and weight comparison](evidence/fresh_training_comparison.json) · [comparison source](compare_reproductions.py). Exact equality was verified in the same CPU environment; dependency versions or hardware changes may introduce numerical differences. The [recorded package versions](evidence/execution_environment.txt) identify that environment.
+
+To check the submitted artifacts without training or altering them:
+
+```bash
+python verify_submission.py
+python -m unittest test_language_evals test_corpus
+```
+
+The [audit source](verify_submission.py) checks all six model identities, 288 result records, complete notebook outputs, split/panel membership, exact-prefix separation, initial/final embeddings, ZIP contents, chat identity and README file links. [Saved audit report](evidence/detailed_audit.json) · [14-test execution log](evidence/unit_tests.txt). Prefix checks have semantic limits, as discussed above.
 
 Launch the actual saved-model terminal chat:
 
@@ -426,7 +473,7 @@ python run_evals.py --model llm_runs/expanded/model.pt --stage final --output re
 
 The same command with `llm_runs/expanded_6000/model.pt` reruns the follow-up. I tested all six saved checkpoints: every result row, including each free continuation, exactly matched the corresponding notebook result. See [verification](evidence/rerun_verification.json) and the `evidence/rerun_*` directories. The course's 14 corpus/evaluation tests also passed (`python -m unittest test_language_evals test_corpus`), including separation and inference checks. Expected invalid-PDF diagnostics in the tests are fixture checks; these experiments imported no PDFs.
 
-The original notebook structure, network and scoring code are retained. Changes are experiment settings and predictions, stable evidence paths, the additional dependency, and documentation/recording helpers. Source code and all model outputs are available for inspection. Model files contain inference weights, not exact optimizer-state training-resume checkpoints.
+The original notebook structure, network and scoring code are retained. Changes are experiment settings and predictions, collision-safe evidence paths, the additional dependency, and documentation, recording, reproduction and audit helpers. The network, four-choice scoring and fixed test suite remain unchanged. Source code and all model outputs are available for inspection. Model files contain inference weights, not exact optimizer-state training-resume checkpoints.
 
 ## Complete archives
 
@@ -437,4 +484,4 @@ The ZIPs preserve complete run evidence; executed notebooks are separate files l
 
 Structural checks are saved in [submission_audit.json](evidence/submission_audit.json). The unmodified `custom_llm.py` is the upstream source reference used by the corpus tests; run the configured experiment notebooks linked above to reproduce the submitted settings.
 
-After execution, notebook artifact-link paths were normalized from local absolute paths to repository-relative links for GitHub viewing. No numerical, sample, or evaluation output was changed. Public access was checked without authentication; the notebook preview also renders the saved loss plot and inspections.
+After execution, notebook artifact-link paths were normalized from local absolute paths to repository-relative links for GitHub viewing. The final interpretation cells now also explain each run in place; the path-allocation code was improved to preserve old results on Run All. No numerical, sample, or evaluation output was changed. Public access was checked without authentication; the notebook preview also renders the saved loss plot and inspections.

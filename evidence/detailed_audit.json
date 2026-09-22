@@ -1,0 +1,75 @@
+{
+  "runs": [
+    {
+      "run": "starter",
+      "stages": [
+        {
+          "stage": "untrained",
+          "cases": 48,
+          "model_sha256": "73fcac5a3daaed81be800a450cc50c3cd932db3b3b1cb79b27401124eeb1f16b",
+          "scores_and_saved_rerun_consistent": true
+        },
+        {
+          "stage": "final",
+          "cases": 48,
+          "model_sha256": "6e4eb60624f6b8874b928ef7720b84ce192d57c1ca1f4e4fed4c3628654d5026",
+          "scores_and_saved_rerun_consistent": true
+        }
+      ],
+      "notebook_complete": true,
+      "panels_and_split_valid": true,
+      "prefix_separation_passed": true,
+      "inspection_matches_weights": true,
+      "archive_byte_identical": true
+    },
+    {
+      "run": "expanded",
+      "stages": [
+        {
+          "stage": "untrained",
+          "cases": 48,
+          "model_sha256": "c7bcced7e6542e2fbebb09b64b0f7d4f996c5d474e8f0e49366fc4efc9558225",
+          "scores_and_saved_rerun_consistent": true
+        },
+        {
+          "stage": "final",
+          "cases": 48,
+          "model_sha256": "750df05bb8574ebd5476a6aadcba0ac5016eb15d8e5bb7bef955d35895cb8218",
+          "scores_and_saved_rerun_consistent": true
+        }
+      ],
+      "notebook_complete": true,
+      "panels_and_split_valid": true,
+      "prefix_separation_passed": true,
+      "inspection_matches_weights": true,
+      "archive_byte_identical": true
+    },
+    {
+      "run": "expanded_6000",
+      "stages": [
+        {
+          "stage": "untrained",
+          "cases": 48,
+          "model_sha256": "c7bcced7e6542e2fbebb09b64b0f7d4f996c5d474e8f0e49366fc4efc9558225",
+          "scores_and_saved_rerun_consistent": true
+        },
+        {
+          "stage": "final",
+          "cases": 48,
+          "model_sha256": "6206bda0ca04642423d4df7f261ae9156e5187320ba31395f77519e2ba36c5da",
+          "scores_and_saved_rerun_consistent": true
+        }
+      ],
+      "notebook_complete": true,
+      "panels_and_split_valid": true,
+      "prefix_separation_passed": true,
+      "inspection_matches_weights": true,
+      "archive_byte_identical": true
+    }
+  ],
+  "official_sources_unchanged": true,
+  "followup_corpus_split_vocabulary_initial_weights_identical": true,
+  "chat_matches_expanded_checkpoint": true,
+  "readme_file_links_valid": true,
+  "limitation": "Exact prefix rejection does not detect all semantic contamination; review teaching sources too."
+}

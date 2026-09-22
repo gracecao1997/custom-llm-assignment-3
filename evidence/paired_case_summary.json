@@ -1,0 +1,17 @@
+{
+  "common_cases": {
+    "n": 24,
+    "starter_correct": 20,
+    "expanded_correct": 23
+  },
+  "newly_scorable_cases": {
+    "n": 5,
+    "expanded_correct": 4
+  },
+  "improved_common_ids": [
+    "lang_19",
+    "lang_22",
+    "lang_23"
+  ],
+  "regressed_common_ids": []
+}
