@@ -1,0 +1,51 @@
+{
+  "selection": "Complete bodies of two books selected by subject; no test-based entry selection.",
+  "processing": "Remove outer Gutenberg wrappers; remove italic underscores and grammar bold plus signs; reflow paragraphs; original 47-token chunking; removal-only reserved-prefix exclusion.",
+  "no_answer_or_eval_output_used_to_generate_text": true,
+  "sources": [
+    {
+      "title": "Graded Lessons in English",
+      "authors": "Alonzo Reed and Brainerd Kellogg",
+      "gutenberg_id": "7010",
+      "landing_page": "https://www.gutenberg.org/ebooks/7010",
+      "download_url": "https://www.gutenberg.org/ebooks/7010.txt.utf-8",
+      "original_file": "grammar_original.txt",
+      "sha256": "ab4711181d1cf0fb72263eb73cbb26f4fd081eab66d3831c0d87170b3de9bae2",
+      "bytes": 365161,
+      "copyright_status": "Project Gutenberg lists public domain in the USA; source edition notices retained in this directory.",
+      "corpus_file": "corpus/source_expanded/grammar_body.txt",
+      "candidate_passages": 6998,
+      "retained_passages": 6998,
+      "retained_unique_passages": 5553,
+      "separation": {
+        "excluded_passages": 0,
+        "case_ids": [],
+        "suite_sha256": "1d7c503f34d88260d0ac897bc36b8ba621cccc1950aef47e7121e69b2c1c9e1d",
+        "method": "normalized contiguous prompt match; not a semantic leakage detector"
+      },
+      "corpus_sha256": "037f52a7050f91f571ff986738b5e6c4ecaa9fd52a7fce3a779ea7bf8c9945b7"
+    },
+    {
+      "title": "English Synonyms and Antonyms",
+      "authors": "James Champlin Fernald",
+      "gutenberg_id": "28900",
+      "landing_page": "https://www.gutenberg.org/ebooks/28900",
+      "download_url": "https://www.gutenberg.org/ebooks/28900.txt.utf-8",
+      "original_file": "antonyms_original.txt",
+      "sha256": "064140707c73840bc185bbb7ea6ddd0b38ca7108663684717266aa13943847da",
+      "bytes": 1464511,
+      "copyright_status": "Project Gutenberg lists public domain in the USA; source edition notices retained in this directory.",
+      "corpus_file": "corpus/source_expanded/antonyms_body.txt",
+      "candidate_passages": 23817,
+      "retained_passages": 23817,
+      "retained_unique_passages": 18243,
+      "separation": {
+        "excluded_passages": 0,
+        "case_ids": [],
+        "suite_sha256": "1d7c503f34d88260d0ac897bc36b8ba621cccc1950aef47e7121e69b2c1c9e1d",
+        "method": "normalized contiguous prompt match; not a semantic leakage detector"
+      },
+      "corpus_sha256": "1bb83f13e83e0969fd6334e5467338302b1e24e569cc042916da343768e9e5a2"
+    }
+  ]
+}

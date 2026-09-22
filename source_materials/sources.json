@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Graded Lessons in English",
+    "authors": "Alonzo Reed and Brainerd Kellogg",
+    "gutenberg_id": "7010",
+    "landing_page": "https://www.gutenberg.org/ebooks/7010",
+    "download_url": "https://www.gutenberg.org/ebooks/7010.txt.utf-8",
+    "original_file": "grammar_original.txt",
+    "sha256": "ab4711181d1cf0fb72263eb73cbb26f4fd081eab66d3831c0d87170b3de9bae2",
+    "bytes": 365161,
+    "copyright_status": "Project Gutenberg lists public domain in the USA; source edition notices retained in this directory."
+  },
+  {
+    "title": "English Synonyms and Antonyms",
+    "authors": "James Champlin Fernald",
+    "gutenberg_id": "28900",
+    "landing_page": "https://www.gutenberg.org/ebooks/28900",
+    "download_url": "https://www.gutenberg.org/ebooks/28900.txt.utf-8",
+    "original_file": "antonyms_original.txt",
+    "sha256": "064140707c73840bc185bbb7ea6ddd0b38ca7108663684717266aa13943847da",
+    "bytes": 1464511,
+    "copyright_status": "Project Gutenberg lists public domain in the USA; source edition notices retained in this directory."
+  }
+]
